@@ -1,7 +1,6 @@
 import React from 'react';
 
-const LatestAddedAnimes = () => {
-
+const RandomAnime = () => {
     const latestEpisodes = [
         {
             id: 1,
@@ -24,9 +23,7 @@ const LatestAddedAnimes = () => {
             image: 'https://api.lorem.space/image/movie?w=200&h=280',
         }
 
-
     ];
-
 
     return (
         <div className='w-5/6 mx-auto pb-10'>
@@ -34,9 +31,9 @@ const LatestAddedAnimes = () => {
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 cursor-pointer'>
                 {latestEpisodes.map(episode => (
                     <div key={episode.id}>
-                        <h2 className='py-2 text-xl font-semibold'>{episode.title}</h2>
-                        <img className=' opacity-70' src={episode.image} alt={episode.title} />
 
+                        <img className='mx-auto opacity-70' src={episode.image} alt={episode.title} />
+                        <h2 className='py-2 text-center text-xl font-semibold'>{episode.title}</h2>
                     </div>
                 ))}
             </div>
@@ -44,4 +41,4 @@ const LatestAddedAnimes = () => {
     );
 };
 
-export default LatestAddedAnimes;
+export default RandomAnime;
