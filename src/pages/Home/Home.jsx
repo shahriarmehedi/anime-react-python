@@ -13,7 +13,7 @@ const Home = () => {
             <Slider />
             <LatestEpisodes />
             <LatestAddedAnimes />
-            <RecommendedAnime />
+            {/* <RecommendedAnime /> */}
             <RandomAnime />
         </div>
     );
