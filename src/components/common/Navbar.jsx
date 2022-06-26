@@ -1,14 +1,26 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
     return (
         <>
             <nav className=" bg-base-100">
-                <div className="navbar  w-5/6 mx-auto">
-                    <div className="flex-1">
+                <div className="navbar flex justify-between w-5/6 mx-auto">
+                    <div className="">
                         <a className="btn btn-ghost normal-case text-xl">Anime</a>
+                        <div className='flex ml-10'>
+                            <div className='px-4 cursor-pointer'>
+                                <h3 className='text-gray-400'>Menu</h3>
+                            </div>
+                            <div className='px-4 cursor-pointer'>
+                                <h3 className='text-gray-400'>Menu</h3>
+                            </div>
+                            <div className='px-4 cursor-pointer'>
+                                <h3 className='text-gray-400'>Menu</h3>
+                            </div>
+                        </div>
                     </div>
-                    <div className="flex-none gap-2">
+                    <div className=" gap-2">
                         <div className="form-control">
                             <input type="text" placeholder="Search" className="input input-bordered" />
                         </div>
