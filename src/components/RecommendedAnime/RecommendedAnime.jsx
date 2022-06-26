@@ -27,7 +27,7 @@ const RecommendedAnime = () => {
 
     return (
         <div className='w-5/6 mx-auto pb-10'>
-            <h1 className='py-5 text-2xl font-semibold'>Latest Animes</h1>
+            <h1 className='py-5 text-2xl font-semibold'>Recommended for you</h1>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 cursor-pointer'>
                 {latestEpisodes.map(episode => (
                     <div key={episode.id}>
