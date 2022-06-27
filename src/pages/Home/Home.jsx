@@ -1,4 +1,4 @@
-import React from 'react';
+
 import Navbar from '../../components/common/Navbar';
 import LatestAddedAnimes from '../../components/LatestAddedAnimes/LatestAddedAnimes';
 import LatestEpisodes from '../../components/LatestEpisodes/LatestEpisodes';
@@ -6,7 +6,10 @@ import RandomAnime from '../../components/RandomAnime/RandomAnime';
 import RecommendedAnime from '../../components/RecommendedAnime/RecommendedAnime';
 import Slider from '../../components/Slider';
 
+
+
 const Home = () => {
+
     return (
         <div>
             <Navbar />

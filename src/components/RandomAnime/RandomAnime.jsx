@@ -10,7 +10,6 @@ const RandomAnime = () => {
             .then(res => res.json())
             .then(data => {
                 setAnimes(data);
-                console.log(data);
             })
             .catch(err => console.log(err));
     }, []);
@@ -25,7 +24,7 @@ const RandomAnime = () => {
                             <div className="hover:scale-110  relative flex justify-center items-center transition duration-300 hover:text-white">
                                 <img className='mx-auto hover:opacity-90 transition duration-300 opacity-70 border-[3px] shadow rounded-md border-white' src={`https://anime-python-backend.herokuapp.com${anime.image}`} alt={anime.title} />
                                 <button className="absolute">
-                                    <i class="bi bi-play-circle-fill text-4xl shadow-lg opacity-80 text-white"></i>
+                                    <i className="bi bi-play-circle-fill text-4xl shadow-lg opacity-80 text-white"></i>
                                 </button>
                             </div>
                         </Link>
