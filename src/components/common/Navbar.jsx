@@ -9,15 +9,22 @@ const Navbar = () => {
                     <div className="">
                         <a className="btn btn-ghost normal-case text-xl">Anime</a>
                         <div className='flex ml-10'>
-                            <div className='px-4 cursor-pointer'>
-                                <h3 className='text-gray-400'>Menu</h3>
-                            </div>
-                            <div className='px-4 cursor-pointer'>
-                                <h3 className='text-gray-400'>Menu</h3>
-                            </div>
-                            <div className='px-4 cursor-pointer'>
-                                <h3 className='text-gray-400'>Menu</h3>
-                            </div>
+                            <NavLink to='/' className="btn btn-ghost">
+                                <div className='px-4 cursor-pointer'>
+                                    <h3 className='text-gray-400'>Home</h3>
+                                </div>
+                            </NavLink>
+                            <NavLink to='/animes' className="btn btn-ghost">
+                                <div className='px-4 cursor-pointer'>
+                                    <h3 className='text-gray-400'>Animes</h3>
+                                </div>
+                            </NavLink>
+                            <NavLink to='/episodes' className="btn btn-ghost">
+                                <div className='px-4 cursor-pointer'>
+                                    <h3 className='text-gray-400'>Episodes</h3>
+                                </div>
+                            </NavLink>
+
                         </div>
                     </div>
                     <div className=" gap-2">
