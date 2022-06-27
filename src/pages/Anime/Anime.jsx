@@ -121,7 +121,7 @@ const Anime = () => {
                     <img className='pt-7' src="https://images-na.ssl-images-amazon.com/images/I/91QEHqpNzML._SL500_.png" alt="" />
 
                 </div>
-                <div className='w-[75%] mx-auto bg-white rounded  h-[600px] overflow-y-auto'>
+                <div className='w-[75%] mx-auto bg-white rounded  h-[830px] overflow-y-auto'>
                     <div className='bg-white flex items-center justify-between mt-3 mx-5 sticky top-0'>
                         <h3 className='py-2 text-2xl font-bold text-gray-700 mb-5'>List of episodes</h3>
                         <div>
