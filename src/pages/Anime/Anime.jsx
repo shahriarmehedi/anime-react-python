@@ -52,25 +52,12 @@ const Anime = () => {
 
     ]
 
-    const animes = useContext(AnimeContext)[0]['id_name'] // "/anime/kaginado-season-2"
-    // remove the first char
-    const id_name = animes.slice(1)
-
-    const [allEpisodes, setAllEpisodes] = useState(episodes);
     const [anime, setAnime] = useState();
 
     // console.log(animes);
 
     useEffect(() => {
-        const body = { "id_name": id_name }
-        fetch(`${process.env.REACT_APP_BASEURL}/anime-info`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify(body)
-        })
+        fetch(`${process.env.REACT_APP_BASEURL}/anime-info`)
             .then(res => res.json())
             .then(data => {
                 if (data['info']) {
@@ -79,7 +66,7 @@ const Anime = () => {
                 }
             })
             .catch(err => console.log(err));
-    }, [id_name]);
+    }, []);
 
 
     if (!anime) {
