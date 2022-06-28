@@ -15,6 +15,14 @@ const LatestEpisodes = () => {
             .catch(err => console.log(err));
     }, []);
 
+    if (!latestEpisodes.length) {
+        return (
+            <div className='h-20 flex justify-center items-center'>
+                <button class="btn loading">loading...</button>
+            </div>
+        )
+    }
+
 
     return (
         <div className='w-5/6 mx-auto pb-10'>
