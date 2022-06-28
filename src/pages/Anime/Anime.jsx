@@ -34,7 +34,7 @@ const Anime = () => {
 
 
 
-    if (!anime) {
+    if (anime.length === 0) {
         return (
             <div className='min-h-screen flex justify-center items-center'>
                 <button className="btn loading">loading...</button>
@@ -42,9 +42,6 @@ const Anime = () => {
         )
 
     }
-
-
-
 
     return (
         <div>
