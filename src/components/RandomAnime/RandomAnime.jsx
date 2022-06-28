@@ -14,6 +14,16 @@ const RandomAnime = () => {
             .catch(err => console.log(err));
     }, []);
 
+
+    if (!animes.length) {
+        return (
+            <div className='h-20 flex justify-center items-center'>
+                <button class="btn loading">loading...</button>
+            </div>
+        )
+    }
+
+
     return (
         <div className='w-5/6 mx-auto pb-10'>
             <h1 className='py-5 text-2xl font-semibold text-white'>Random Animes</h1>

@@ -2,6 +2,9 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
+
+
+
     return (
         <>
             <nav className=" bg-base-100">
@@ -14,16 +17,7 @@ const Navbar = () => {
                                     <h3 className='text-gray-400'>Home</h3>
                                 </div>
                             </NavLink>
-                            <NavLink to='/animes' className="btn btn-ghost">
-                                <div className='px-4 cursor-pointer'>
-                                    <h3 className='text-gray-400'>Animes</h3>
-                                </div>
-                            </NavLink>
-                            <NavLink to='/episodes' className="btn btn-ghost">
-                                <div className='px-4 cursor-pointer'>
-                                    <h3 className='text-gray-400'>Episodes</h3>
-                                </div>
-                            </NavLink>
+
 
                         </div>
                     </div>

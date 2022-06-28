@@ -8,9 +8,11 @@ const Episodes = () => {
 
     const comment = () => {
         alert('Comment button is working');
-
     }
 
+    const nextEpisodeClicked = () => {
+        alert('Next episode button is working');
+    }
 
     return (
         <div className='bg-zinc-800'>
@@ -38,7 +40,9 @@ const Episodes = () => {
                             </TabPanel>
                         </Tabs>
 
-
+                        <div className='flex justify-end'>
+                            <button onClick={nextEpisodeClicked} className='bg-green-500 text-white px-5 py-2 rounded mt-5 text-right'>Next episode <i class="bi bi-arrow-right-circle-fill"></i> </button>
+                        </div>
                     </div>
                     <div className='w-5/6  lg:w-[30%] mx-auto mt-16'>
                         <img src="https://images-na.ssl-images-amazon.com/images/I/91QEHqpNzML._SL500_.png" alt="" />
@@ -66,7 +70,6 @@ const Episodes = () => {
                                 <p>Lorem ipsum dolor sit amet.</p>
                             </div>
                         </div>
-                        <hr className='border-zinc-600' />
                         <div className='bg-zinc-700 rounded-md flex items-center my-3 py-3'>
                             <div class="avatar">
                                 <div class="w-14 mx-2 mask mask-squircle">

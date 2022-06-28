@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import {AnimeContext} from '../../../src/App';
+import { AnimeContext } from '../../../src/App';
 
 
 const LatestAddedAnimes = () => {
     //console.log(process.env.REACT_APP_BASEURL);
 
     const setAnimes = useContext(AnimeContext)[1];
-    
+
     const [latestAnimes, setLatestAnimes] = useState([]);
 
     useEffect(() => {
@@ -19,7 +19,15 @@ const LatestAddedAnimes = () => {
             .catch(err => console.log(err));
     }, []);
 
-    
+
+    if (!latestAnimes.length) {
+        return (
+            <div className=' h-20  flex justify-center items-center'>
+                <button class="btn loading">loading...</button>
+            </div>
+        )
+    }
+
 
     return (
         <div className='w-5/6 mx-auto pb-10'>lkb v
