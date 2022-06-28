@@ -18,7 +18,7 @@ const RandomAnime = () => {
     if (!animes.length) {
         return (
             <div className='h-20 flex justify-center items-center'>
-                <button class="btn loading">loading...</button>
+                <button className="btn loading">loading...</button>
             </div>
         )
     }

@@ -23,14 +23,14 @@ const LatestAddedAnimes = () => {
     if (!latestAnimes.length) {
         return (
             <div className=' h-20  flex justify-center items-center'>
-                <button class="btn loading">loading...</button>
+                <button className="btn loading">loading...</button>
             </div>
         )
     }
 
 
     return (
-        <div className='w-5/6 mx-auto pb-10'>lkb v
+        <div className='w-5/6 mx-auto pb-10'>
             <h1 className='py-5 text-2xl font-semibold text-white'>Latest Animes</h1>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5 cursor-pointer'>
                 {latestAnimes.map(anime => (

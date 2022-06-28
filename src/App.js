@@ -6,6 +6,7 @@ import Episodes from './pages/Episodes/Episodes';
 import { createContext, useEffect, useState } from 'react';
 import PrivacyPolicy from './pages/PrivacyPolicy/PrivacyPolicy';
 import TermsAndConditions from './pages/TermsAndConditions/TermsAndConditions';
+import Footer from './components/common/Footer';
 
 export const AnimeContext = createContext()
 
@@ -24,11 +25,12 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/animes" element={<Anime />} />
-            <Route path="/episodes" element={<Episodes />} />
+            <Route path="/animes/:animeId" element={<Anime />} />
+            <Route path="/episodes/:episodeId" element={<Episodes />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-conditions" element={<TermsAndConditions />} />
           </Routes>
+          <Footer />
         </BrowserRouter>
       </div>
     </AnimeContext.Provider>

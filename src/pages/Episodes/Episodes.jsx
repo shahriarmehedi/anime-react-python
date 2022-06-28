@@ -41,11 +41,12 @@ const Episodes = () => {
                         </Tabs>
 
                         <div className='flex justify-end'>
-                            <button onClick={nextEpisodeClicked} className='bg-green-500 text-white px-5 py-2 rounded mt-5 text-right'>Next episode <i class="bi bi-arrow-right-circle-fill"></i> </button>
+                            <button onClick={nextEpisodeClicked} className='bg-green-500 text-white px-5 py-2 rounded mt-5 text-right'>Next episode <i className="bi bi-arrow-right-circle-fill"></i> </button>
                         </div>
                     </div>
                     <div className='w-5/6  lg:w-[30%] mx-auto mt-16'>
                         <img src="https://images-na.ssl-images-amazon.com/images/I/91QEHqpNzML._SL500_.png" alt="" />
+
                     </div>
                 </div>
 
@@ -61,8 +62,8 @@ const Episodes = () => {
                         {/* --------------ALL COMMENTS----------- */}
 
                         <div className='bg-zinc-700 rounded-md flex items-center my-3 py-3'>
-                            <div class="avatar">
-                                <div class="w-14 mx-2 mask mask-squircle">
+                            <div className="avatar">
+                                <div className="w-14 mx-2 mask mask-squircle">
                                     <img src="https://api.lorem.space/image/face?hash=47449" />
                                 </div>
                             </div>
@@ -71,8 +72,8 @@ const Episodes = () => {
                             </div>
                         </div>
                         <div className='bg-zinc-700 rounded-md flex items-center my-3 py-3'>
-                            <div class="avatar">
-                                <div class="w-14 mx-2 mask mask-squircle">
+                            <div className="avatar">
+                                <div className="w-14 mx-2 mask mask-squircle">
                                     <img src="https://api.lorem.space/image/face?hash=47449" />
                                 </div>
                             </div>
@@ -89,8 +90,8 @@ const Episodes = () => {
                         <form onSubmit={comment}>
                             <div className='flex items-center'>
 
-                                <div class="avatar">
-                                    <div class="w-14 mx-2 mask mask-squircle">
+                                <div className="avatar">
+                                    <div className="w-14 mx-2 mask mask-squircle">
                                         <img src="https://api.lorem.space/image/face?hash=47449" />
                                     </div>
                                 </div>

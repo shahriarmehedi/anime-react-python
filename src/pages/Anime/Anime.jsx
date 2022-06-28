@@ -1,8 +1,11 @@
 import React, { useState, useContext, useEffect } from 'react';
 import Navbar from '../../components/common/Navbar';
 import { AnimeContext } from '../../App';
+import { useParams } from 'react-router';
 
 const Anime = () => {
+
+    let { animeId } = useParams();
 
     const episodes = [
         {
@@ -63,14 +66,7 @@ const Anime = () => {
 
     useEffect(() => {
         const body = { "id_name": id_name }
-        fetch(`${process.env.REACT_APP_BASEURL}/anime-info`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify(body)
-        })
+        fetch(`${process.env.REACT_APP_BASEURL}/anime-info`)
             .then(res => res.json())
             .then(data => {
                 if (data['info']) {
@@ -85,7 +81,7 @@ const Anime = () => {
     if (!anime) {
         return (
             <div className='min-h-screen flex justify-center items-center'>
-                <button class="btn loading">loading...</button>
+                <button className="btn loading">loading...</button>
             </div>
         )
 
@@ -98,12 +94,21 @@ const Anime = () => {
             <Navbar />
             <div>
                 <img className='w-full h-[250px] object-cover' src={anime && `data:image/png;base64,${anime['banner']}`} alt="" />
-                <div className='absolute top-[230px] left-[380px]'>
-                    <div className='flex items-center'>
-                        <h1 className='text-center text-white text-2xl font-semibold' style={{ maxWidth: '600px' }}>{anime && anime.title}</h1>
-                        <div className="badge badge-accent mx-2">{anime && anime.type}</div>
+                <div className='absolute top-[230px] left-[380px] w-[62%]'>
+                    <div className='flex items-center justify-between'>
+                        <div className='flex items-center'>
+                            <h1 className='text-center text-white text-2xl font-semibold' >{anime && anime.title}</h1>
+                            <div className="badge badge-accent mx-2">{anime && anime.type}</div>
+                        </div>
+                        <div>
+                            <button className="btn bg-zinc-700 text-gray-200 btn-sm  gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+                                Add to favorites
+                            </button>
+                        </div>
                     </div>
                     <h2 className=' text-gray-400 py-1'>{anime && anime.debut}</h2>
+
                 </div>
             </div>
             <div className='flex w-5/6 mx-auto'>
@@ -117,7 +122,7 @@ const Anime = () => {
                             return <div className="badge hover:bg-sky-500 hover:text-white mr-1 border-none bg-sky-200 text-sky-700 cursor-pointer">{genre}</div>
                         })}
                     </div>
-                    <h3 className='py-2 text-xs'>{anime && anime.synopsis}</h3>
+                    <p className='py-2 text-xs overflow-auto pr-5'>{anime && anime.synopsis}</p>
                     {/* <h4> <i className="bi bi-arrow-right-circle-fill text-sky-500"></i> <span className='font-bold text-sm'>Tate no Yuusha no Nariagari</span> (Precuela)</h4> */}
                 </div>
 

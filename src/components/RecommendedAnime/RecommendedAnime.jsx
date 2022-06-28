@@ -29,7 +29,7 @@ const RecommendedAnime = () => {
     if (latestEpisodes.length > 0) {
         return (
             <div className='h-20 flex justify-center items-center'>
-                <button class="btn loading">loading...</button>
+                <button className="btn loading">loading...</button>
             </div>
         )
     }
