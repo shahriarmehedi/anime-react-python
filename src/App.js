@@ -15,7 +15,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/animes/:animeId" element={<Anime />} />
+          <Route path="/anime-info/:animeId" element={<Anime />} />
           <Route path="/episodes/:episodeId" element={<Episodes />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-conditions" element={<TermsAndConditions />} />
