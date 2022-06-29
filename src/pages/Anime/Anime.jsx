@@ -93,7 +93,7 @@ const Anime = () => {
 
                 </div>
                 <div className='lg:w-[75%] mx-auto bg-white rounded my-10 lg:my-0  h-[830px] overflow-y-auto'>
-                    <div className='bg-white flex items-center justify-between mt-3 mb-2 mx-5 sticky top-0'>
+                    <div className='bg-white flex items-center justify-between my-3 mx-5 sticky top-0'>
                         <h3 className='py-2 lg:text-2xl font-bold text-gray-700'>List of episodes</h3>
                         <div>
                             <input type="text" placeholder="Search here..." className="input input-bordered input-info w-36 lg:w-full" />
@@ -110,11 +110,11 @@ const Anime = () => {
                                 <>
                                     <Link to={`/episodes/${episode_id}`}>
                                         <div className='flex px-5 items-center my-5 hover:text-sky-500'>
-                                            <div>
+                                            <div className='hidden lg:block'>
                                                 <i className="bi bi-play-circle-fill text-3xl text-sky-500"></i>
                                             </div>
                                             <div className='rounded'>
-                                                <img className=' h-24  px-5' src={`data:image/png;base64,${episode['imagePreview']}`} alt="" />
+                                                <img className='object-contain h-24  px-5' src={`data:image/png;base64,${episode['imagePreview']}`} alt="" />
                                             </div>
                                             <div>
                                                 <h3 className='font-bold text-gray-700 font-lg'>{episode.title}</h3>

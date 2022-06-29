@@ -27,7 +27,7 @@ function App() {
   }, []);
 
     useEffect(() => {
-        fetch('https://anime-python-backend.herokuapp.com/latest-episodes')
+        fetch('http://127.0.0.1:8000/latest-episodes')
             .then(res => res.json())
             .then(data => {
                 setLatestEpisodes(data);
