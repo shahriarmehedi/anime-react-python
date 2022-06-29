@@ -13,7 +13,7 @@ const Navbar = () => {
                         <NavLink
                             to='/'
                             className="btn-ghost rounded-md normal-case text-xl">
-                            <img className=' h-10 lg:h-14 relative bottom-1 lg:bottom-2' src={Logo} alt="" />
+                            <img className=' h-10 lg:h-14 relative bottom-1 ' src={Logo} alt="" />
                         </NavLink>
 
                     </div>
