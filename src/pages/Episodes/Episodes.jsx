@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../../components/common/Navbar';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import { useParams } from 'react-router';
 
 const Episodes = () => {
 
+    let { episodeId } = useParams();
+    const [viseoServers, setViseoServers] = useState([]);
 
     const comment = () => {
         alert('Comment button is working');
@@ -13,6 +16,19 @@ const Episodes = () => {
     const nextEpisodeClicked = () => {
         alert('Next episode button is working');
     }
+
+    useEffect(() => {
+        fetch(`${process.env.REACT_APP_BASEURL}/episode-info/${episodeId}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data['video_servers'].length) {
+                    setViseoServers(data['video_servers']);
+                    console.log(data);
+                }
+            })
+            .catch(err => console.log(err));
+    }, [episodeId]);
+
 
     return (
         <div className='bg-zinc-800'>
@@ -24,20 +40,33 @@ const Episodes = () => {
                     <div className='w-5/6  lg:w-[70%] mx-auto px-5 mr-5 pt-5'>
                         <Tabs>
                             <TabList>
-                                <Tab>Option 1</Tab>
-                                <Tab>Option 2</Tab>
+                                {viseoServers.map((server, index) => {
+                                    return (
+                                        <Tab key={index}>{server.server_name}</Tab>
+                                    )
+                                })}
                             </TabList>
 
-                            <TabPanel>
+                            {viseoServers.map((server, index) => {
+                                return (
+                                    <TabPanel key={index}>
+                                        <div className="relative pt-[56%]">
+                                            <iframe allowFullScreen className="absolute inset-0 w-full h-full" src="https://mega.nz/embed#!09Ei3YLT!aYDCqbZ_G62gDnIl5xH1DIkrTZh5T1xsKVLqBGew04M'" frameBorder="0" title="1"></iframe>
+                                        </div>
+                                    </TabPanel>
+                                )
+                            })}
+
+                            {/* <TabPanel>
                                 <div className="relative pt-[56%]">
-                                    <iframe allowFullScreen className="absolute inset-0 w-full h-full" src="https://mega.nz/embed#!09Ei3YLT!aYDCqbZ_G62gDnIl5xH1DIkrTZh5T1xsKVLqBGew04M'" frameBorder="0"></iframe>
+                                    <iframe allowFullScreen className="absolute inset-0 w-full h-full" src="https://mega.nz/embed#!09Ei3YLT!aYDCqbZ_G62gDnIl5xH1DIkrTZh5T1xsKVLqBGew04M'" frameBorder="0" title="1"></iframe>
                                 </div>
                             </TabPanel>
                             <TabPanel>
                                 <div className="relative pt-[56%]">
-                                    <iframe allowFullScreen className="absolute inset-0 w-full h-full" src="https://mega.nz/embed#!09Ei3YLT!aYDCqbZ_G62gDnIl5xH1DIkrTZh5T1xsKVLqBGew04M'" frameBorder="0"></iframe>
+                                    <iframe allowFullScreen className="absolute inset-0 w-full h-full" src="https://mega.nz/embed#!09Ei3YLT!aYDCqbZ_G62gDnIl5xH1DIkrTZh5T1xsKVLqBGew04M'" frameBorder="0" title="1"></iframe>
                                 </div>
-                            </TabPanel>
+                            </TabPanel> */}
                         </Tabs>
 
                         <div className='flex justify-end'>
@@ -64,7 +93,7 @@ const Episodes = () => {
                         <div className='bg-zinc-700 rounded-md flex items-center my-3 py-3'>
                             <div className="avatar">
                                 <div className="w-14 mx-2 mask mask-squircle">
-                                    <img src="https://api.lorem.space/image/face?hash=47449" />
+                                    <img src="https://api.lorem.space/image/face?hash=47449" alt="" />
                                 </div>
                             </div>
                             <div className='mx-3'>
@@ -74,7 +103,7 @@ const Episodes = () => {
                         <div className='bg-zinc-700 rounded-md flex items-center my-3 py-3'>
                             <div className="avatar">
                                 <div className="w-14 mx-2 mask mask-squircle">
-                                    <img src="https://api.lorem.space/image/face?hash=47449" />
+                                    <img src="https://api.lorem.space/image/face?hash=47449" alt="" />
                                 </div>
                             </div>
                             <div className='mx-3'>
@@ -92,7 +121,7 @@ const Episodes = () => {
 
                                 <div className="avatar">
                                     <div className="w-14 mx-2 mask mask-squircle">
-                                        <img src="https://api.lorem.space/image/face?hash=47449" />
+                                        <img src="https://api.lorem.space/image/face?hash=47449" alt="" />
                                     </div>
                                 </div>
                                 <textarea className="textarea w-full mx-3" placeholder="Write your comment here"></textarea>
