@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../../components/common/Navbar';
 import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
 
 const Anime = () => {
 
@@ -94,22 +95,26 @@ const Anime = () => {
 
                     {
                         anime && anime['episodes'].map(episode => {
+                            // replate / to -slash- of episode_id
+                            const episode_id = episode['id'].replace(/\//g, '-slash-');
                             return (
                                 <>
-                                    <div className='flex px-5 items-center my-5 hover:text-sky-500'>
-                                        <div>
-                                            <i className="bi bi-play-circle-fill text-3xl text-sky-500"></i>
-                                        </div>
-                                        <div className='rounded'>
-                                            <img className=' h-24  px-5' src={`data:image/png;base64,${episode['imagePreview']}`} alt="" />
-                                        </div>
-                                        <div>
-                                            <h3 className='font-bold text-gray-700 font-lg'>{episode.title}</h3>
-                                            <h3>Episode: {episode.episode} </h3>
-                                        </div>
+                                    <Link to={`/episodes/${episode_id}`}>
+                                        <div className='flex px-5 items-center my-5 hover:text-sky-500'>
+                                            <div>
+                                                <i className="bi bi-play-circle-fill text-3xl text-sky-500"></i>
+                                            </div>
+                                            <div className='rounded'>
+                                                <img className=' h-24  px-5' src={`data:image/png;base64,${episode['imagePreview']}`} alt="" />
+                                            </div>
+                                            <div>
+                                                <h3 className='font-bold text-gray-700 font-lg'>{episode.title}</h3>
+                                                <h3>Episode: {episode.episode} </h3>
+                                            </div>
 
-                                    </div>
-                                    <hr className='border-gray-200' />
+                                        </div>
+                                        <hr className='border-gray-200' />
+                                    </Link>
                                 </>
 
                             )

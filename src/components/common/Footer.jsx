@@ -2,6 +2,18 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
+
+
+    // Onclick back to top
+    const backToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+
+
+
     return (
         <div>
             <footer className="footer footer-center p-10 bg-base-200 text-base-content rounded">
@@ -14,6 +26,13 @@ const Footer = () => {
                     <Link to='/terms-conditions' className="link link-hover">
                         Terms & conditions
                     </Link>
+
+                </div>
+                <div className=''>
+                    <button className="btn bg-zinc-900 text-gray-200 btn-md  gap-2" onClick={backToTop}>
+                        <i class="bi bi-arrow-up-circle-fill text-3xl"></i>
+
+                    </button>
 
                 </div>
                 <div>
