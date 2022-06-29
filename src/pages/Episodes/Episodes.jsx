@@ -40,22 +40,26 @@ const Episodes = () => {
                     <div className='w-5/6  lg:w-[70%] mx-auto px-5 mr-5 pt-5'>
                         <Tabs>
                             <TabList>
-                                {viseoServers.map((server, index) => {
+                                {viseoServers[0]?.map((server, index) => {
                                     return (
-                                        <Tab key={index}>{server.server_name}</Tab>
+                                        <Tab key={index}>{server.server}</Tab>
                                     )
                                 })}
                             </TabList>
 
-                            {viseoServers.map((server, index) => {
+
+                            {viseoServers[0]?.map((server, index) => {
                                 return (
                                     <TabPanel key={index}>
                                         <div className="relative pt-[56%]">
-                                            <iframe allowFullScreen className="absolute inset-0 w-full h-full" src="https://mega.nz/embed#!09Ei3YLT!aYDCqbZ_G62gDnIl5xH1DIkrTZh5T1xsKVLqBGew04M'" frameBorder="0" title="1"></iframe>
+                                            <iframe allowFullScreen className="absolute inset-0 w-full h-full" src={server.code} frameBorder="0" title="1"></iframe>
                                         </div>
                                     </TabPanel>
                                 )
                             })}
+
+
+
 
                             {/* <TabPanel>
                                 <div className="relative pt-[56%]">
