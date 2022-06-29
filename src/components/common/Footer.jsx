@@ -17,7 +17,7 @@ const Footer = () => {
     return (
         <div>
             <footer className="footer footer-center p-10 bg-base-200 text-base-content rounded">
-                <div className="grid grid-flow-col gap-4">
+                <div className="flex flex-col lg:flex-row gap-4">
                     <a className="link link-hover">About us</a>
                     <a className="link link-hover">Contact</a>
                     <Link to='/privacy-policy' className="link link-hover">
@@ -30,7 +30,7 @@ const Footer = () => {
                 </div>
                 <div className=''>
                     <button className="btn bg-zinc-900 text-gray-200 btn-md  gap-2" onClick={backToTop}>
-                        <i class="bi bi-arrow-up-circle-fill text-3xl"></i>
+                        <i className="bi bi-arrow-up-circle-fill text-3xl"></i>
 
                     </button>
 
