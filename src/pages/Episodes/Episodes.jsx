@@ -43,27 +43,34 @@ const Episodes = () => {
                 <h1 className='px-5 py-2'>Episodes no. {episodeNumber}</h1>
                 <div className='flex'>
                     <div className='w-5/6  lg:w-[70%] mx-auto px-5 mr-5 pt-5'>
-                        <Tabs>
-                            <TabList>
-                                {viseoServers[0]?.map((server, index) => {
-                                    return (
-                                        <Tab key={index}>{server.title}</Tab>
-                                    )
-                                })}
-                            </TabList>
+                        {
+                            viseoServers.length ?
+                                <Tabs>
+                                    <TabList>
+                                        {viseoServers[0]?.map((server, index) => {
+                                            return (
+                                                <Tab key={index}>{server.title}</Tab>
+                                            )
+                                        })}
+                                    </TabList>
 
 
-                            {viseoServers[0]?.map((server, index) => {
-                                return (
-                                    <TabPanel key={index}>
-                                        <div className="relative pt-[56%]">
-                                            <iframe allowFullScreen className="absolute inset-0 w-full h-full" src={server.code} frameBorder="0" title="1"></iframe>
-                                        </div>
-                                    </TabPanel>
-                                )
-                            })}
+                                    {viseoServers[0]?.map((server, index) => {
+                                        return (
+                                            <TabPanel key={index}>
+                                                <div className="relative pt-[56%]">
+                                                    <iframe allowFullScreen className="absolute inset-0 w-full h-full" src={server.code} frameBorder="0" title="1"></iframe>
+                                                </div>
+                                            </TabPanel>
+                                        )
+                                    })}
 
-                        </Tabs>
+                                </Tabs>
+                                :
+                                <div className='min-h-[35vw] bg-zinc-800 flex justify-center items-center'>
+                                    <button className="btn loading">loading...</button>
+                                </div>
+                        }
 
                         <div className='flex justify-end'>
                             <button onClick={nextEpisodeClicked} className='bg-green-500 text-white px-5 py-2 rounded mt-5 text-right'>Next episode <i className="bi bi-arrow-right-circle-fill"></i> </button>
