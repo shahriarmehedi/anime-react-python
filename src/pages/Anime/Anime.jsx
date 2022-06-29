@@ -4,7 +4,6 @@ import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 
 const Anime = () => {
-    
     useEffect(() => {
         const backToTop = () => {
             window.scrollTo({

@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navbar from '../../components/common/Navbar';
 
 const TermsAndConditions = () => {
+
+    useEffect(() => {
+        const backToTop = () => {
+            window.scrollTo({
+                top: 0,
+            });
+        }
+        backToTop();
+    }, []);
     return (
         <div className='bg-zinc-800'>
             <Navbar />

@@ -46,7 +46,7 @@ const Episodes = () => {
         episodeTitle.shift();
     }
     episodeTitle = episodeTitle.join(' ');
-    episodeTitle = episodeTitle.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+    episodeTitle = episodeTitle.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
 
 
     useEffect(() => {
@@ -54,12 +54,12 @@ const Episodes = () => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    anime_title: episodeTitle,
-                    episode_number: episodeNumber
-                    })
-                })
+            },
+            body: JSON.stringify({
+                anime_title: episodeTitle,
+                episode_number: episodeNumber
+            })
+        })
             .then(res => res.json())
             .then(data => {
                 console.log(data);
@@ -112,14 +112,14 @@ const Episodes = () => {
                         }
 
                         <div className='flex justify-end'>
-                            {nextEpisode ?(
+                            {nextEpisode ? (
                                 <Link to={`/episodes/${nextEpisode}`}>
-                                    <button onClick={()=> setViseoServers([])} className='bg-green-500 text-white px-5 py-2 rounded mt-5 text-right'>Next episode <i className="bi bi-arrow-right-circle-fill"></i> </button>
+                                    <button onClick={() => setViseoServers([])} className='bg-green-500 text-white px-5 py-2 rounded mt-5 text-right'>Next episode <i className="bi bi-arrow-right-circle-fill"></i> </button>
                                 </Link>
-                            ):(
+                            ) : (
                                 <button className='cursor-not-allowed bg-gray-500 text-white px-5 py-2 rounded mt-5 text-right'>Next episode <i className="bi bi-arrow-right-circle-fill"></i> </button>
                             )}
-                            
+
                         </div>
                     </div>
                     <div className='lg:w-[30%] mx-auto mt-16'>
