@@ -7,15 +7,16 @@ import { Link } from 'react-router-dom';
 
 const Episodes = () => {
 
-    const backToTop = () => {
-        window.scrollTo({
-            top: 0
-        });
-    }
-    backToTop();
+    useEffect(() => {
+        const backToTop = () => {
+            window.scrollTo({
+                top: 0
+            });
+        }
+        backToTop();
+    }, []);
 
-    let { episodeId } = useParams();
-    console.log(episodeId);
+    const { episodeId } = useParams();
 
     const [nextEpisode, setNextEpisode] = useState("");
     const [viseoServers, setViseoServers] = useState([]);
