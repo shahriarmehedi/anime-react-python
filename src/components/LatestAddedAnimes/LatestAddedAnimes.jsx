@@ -11,7 +11,6 @@ const LatestAddedAnimes = () => {
             .then(res => res.json())
             .then(data => {
                 setLatestAnimes(data);
-                console.log(data);
             })
             .catch(err => console.log(err));
     }, []);
