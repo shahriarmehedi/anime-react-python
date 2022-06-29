@@ -6,6 +6,14 @@ import { useParams } from 'react-router';
 
 const Episodes = () => {
 
+    const backToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+    backToTop();
+
     let { episodeId } = useParams();
 
     const [viseoServers, setViseoServers] = useState([]);
