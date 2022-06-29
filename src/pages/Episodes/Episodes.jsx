@@ -40,14 +40,14 @@ const Episodes = () => {
                     <div className='w-5/6  lg:w-[70%] mx-auto px-5 mr-5 pt-5'>
                         <Tabs>
                             <TabList>
-                                {viseoServers.map((server, index) => {
+                                {viseoServers && viseoServers.map((server, index) => {
                                     return (
                                         <Tab key={index}>{server.server_name}</Tab>
                                     )
                                 })}
                             </TabList>
 
-                            {viseoServers.map((server, index) => {
+                            {viseoServers && viseoServers.map((server, index) => {
                                 return (
                                     <TabPanel key={index}>
                                         <div className="relative pt-[56%]">
