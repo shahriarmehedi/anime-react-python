@@ -7,8 +7,7 @@ import { useParams } from 'react-router';
 const Episodes = () => {
     const backToTop = () => {
         window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+            top: 0
         });
     }
     backToTop();
@@ -50,10 +49,10 @@ const Episodes = () => {
         <div className='bg-zinc-800'>
             <Navbar />
             <div className='w-5/6 mx-auto '>
-                <h1 className='px-5 pt-5 text-2xl font-bold text-white'>{episodeTitle}</h1>
-                <h1 className='px-5 py-2'>Episodes no. {episodeNumber}</h1>
-                <div className='flex'>
-                    <div className='w-5/6  lg:w-[70%] mx-auto px-5 mr-5 pt-5'>
+                <h1 className='lg:px-5 pt-5 text-2xl font-bold text-white'>{episodeTitle}</h1>
+                <h1 className='lg:px-5 py-2'>Episodes no. {episodeNumber}</h1>
+                <div className='flex flex-col lg:flex-row'>
+                    <div className=' lg:w-[70%] mx-auto lg:px-5 lg:mr-5 pt-5'>
                         {
                             viseoServers.length ?
                                 <Tabs>
@@ -87,7 +86,7 @@ const Episodes = () => {
                             <button onClick={nextEpisodeClicked} className='bg-green-500 text-white px-5 py-2 rounded mt-5 text-right'>Next episode <i className="bi bi-arrow-right-circle-fill"></i> </button>
                         </div>
                     </div>
-                    <div className='w-5/6  lg:w-[30%] mx-auto mt-16'>
+                    <div className='lg:w-[30%] mx-auto mt-16'>
                         <img src="https://images-na.ssl-images-amazon.com/images/I/91QEHqpNzML._SL500_.png" alt="" />
 
                     </div>
@@ -95,18 +94,18 @@ const Episodes = () => {
 
                 {/* --------------  C O M M E N T   S E C T I O N  ----------- */}
 
-                <h3 className='py-5 px-3 text-2xl font-bold text-white'>Comments</h3>
+                <h3 className='py-5 lg:px-3 text-2xl font-bold text-white'>Comments</h3>
 
 
 
-                <div className='flex'>
-                    <div className='bg-zinc-700 rounded-md p-3 w-5/6  lg:w-[65%] mx-auto'>
+                <div className='flex flex-col lg:flex-row'>
+                    <div className='bg-zinc-700 rounded-md px-2 py-5 mb-10 lg:px-3 lg:py-5 lg:w-[65%] mx-auto'>
 
                         {/* --------------ALL COMMENTS----------- */}
 
                         <div className='bg-zinc-700 rounded-md flex items-center my-3 py-3'>
                             <div className="avatar">
-                                <div className="w-14 mx-2 mask mask-squircle">
+                                <div className=" w-7 lg:w-14 mx-2 mask mask-squircle">
                                     <img src="https://api.lorem.space/image/face?hash=47449" alt="" />
                                 </div>
                             </div>
@@ -116,7 +115,7 @@ const Episodes = () => {
                         </div>
                         <div className='bg-zinc-700 rounded-md flex items-center my-3 py-3'>
                             <div className="avatar">
-                                <div className="w-14 mx-2 mask mask-squircle">
+                                <div className=" w-7 lg:w-14 mx-2 mask mask-squircle">
                                     <img src="https://api.lorem.space/image/face?hash=47449" alt="" />
                                 </div>
                             </div>
@@ -134,7 +133,7 @@ const Episodes = () => {
                             <div className='flex items-center'>
 
                                 <div className="avatar">
-                                    <div className="w-14 mx-2 mask mask-squircle">
+                                    <div className=" w-7 lg:w-14 mx-2 mask mask-squircle">
                                         <img src="https://api.lorem.space/image/face?hash=47449" alt="" />
                                     </div>
                                 </div>

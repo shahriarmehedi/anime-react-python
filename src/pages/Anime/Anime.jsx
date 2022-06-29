@@ -42,14 +42,14 @@ const Anime = () => {
         <div>
             <Navbar />
             <div>
-                <img className='w-full h-[250px] object-cover' src={anime && `data:image/png;base64,${anime['banner']}`} alt="" />
-                <div className='absolute top-[230px] left-[380px] w-[62%]'>
-                    <div className='flex items-center justify-between'>
-                        <div className='flex items-center'>
-                            <h1 className='text-center text-white text-2xl font-semibold' >{anime?.title}</h1>
-                            <div className="badge badge-accent mx-2">{anime?.type}</div>
+                <img className='w-full h-[320px] lg:h-[250px] object-cover' src={anime && `data:image/png;base64,${anime['banner']}`} alt="" />
+                <div className='w-full mx-auto absolute text-center lg:text-left top-[100px] lg:top-[230px] lg:left-[380px] lg:w-[62%]'>
+                    <div className='flex flex-col lg:flex-row items-center lg:justify-between'>
+                        <div className='flex flex-col lg:flex-row items-center'>
+                            <h1 className='w-5/6 mx-auto lg:w-full text-center text-white text-xl lg:text-2xl font-semibold' >{anime?.title}</h1>
+                            <div className="badge badge-accent mt-5 lg:m-2">{anime?.type}</div>
                         </div>
-                        <div>
+                        <div className='py-3 lg:py-0'>
                             <button className="btn bg-zinc-700 text-gray-200 btn-sm  gap-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
                                 Add to favorites
@@ -60,11 +60,11 @@ const Anime = () => {
 
                 </div>
             </div>
-            <div className='flex w-5/6 mx-auto'>
-                <div className='w-[20%] mx-auto relative bottom-28'>
+            <div className='flex flex-col lg:flex-row w-5/6 mx-auto'>
+                <div className='w-[50%] lg:w-[20%] mx-auto relative bottom-16 lg:bottom-28'>
                     <img className=' transition duration-300 border-[5px] shadow rounded-md border-white' alt="" src={anime && `data:image/png;base64,${anime['poster']}`} />
                 </div>
-                <div className='w-[75%] pl-5 h-[165px] mt-[20px] mx-auto bg-white shadow rounded'>
+                <div className='px-5 lg:px-0 lg:w-[75%] lg:pl-5 lg:h-[190px] lg:overflow-hidden lg:mt-[20px] mx-auto bg-white shadow rounded'>
                     <h3 className='py-2 pt-5 text-2xl font-bold text-gray-700'>Synopsis</h3>
                     <div>
                         {anime && anime.genres.map(genre => {
@@ -79,17 +79,17 @@ const Anime = () => {
 
 
             {/* LIST OF EPISODES */}
-            <div div className='flex w-5/6 mx-auto relative bottom-20' >
-                <div className='w-[20%] mx-auto'>
+            <div div className='flex flex-col lg:flex-row w-5/6 mx-auto relative mt-10 lg:mt-0  mb-10 lg:bottom-20 ' >
+                <div className='lg:w-[20%] mx-auto'>
                     <img src="https://images-na.ssl-images-amazon.com/images/I/91QEHqpNzML._SL500_.png" alt="" />
                     <img className='pt-7' src="https://images-na.ssl-images-amazon.com/images/I/91QEHqpNzML._SL500_.png" alt="" />
 
                 </div>
-                <div className='w-[75%] mx-auto bg-white rounded  h-[830px] overflow-y-auto'>
-                    <div className='bg-white flex items-center justify-between mt-3 mx-5 sticky top-0'>
-                        <h3 className='py-2 text-2xl font-bold text-gray-700 mb-5'>List of episodes</h3>
+                <div className='lg:w-[75%] mx-auto bg-white rounded my-10 lg:my-0  h-[830px] overflow-y-auto'>
+                    <div className='bg-white flex items-center justify-between mt-3 mb-2 mx-5 sticky top-0'>
+                        <h3 className='py-2 lg:text-2xl font-bold text-gray-700'>List of episodes</h3>
                         <div>
-                            <input type="text" placeholder="Search here..." className="input input-bordered input-info w-full max-w-xs" />
+                            <input type="text" placeholder="Search here..." className="input input-bordered input-info w-36 lg:w-full" />
                         </div>
                     </div>
 
