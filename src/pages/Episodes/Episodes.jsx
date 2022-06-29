@@ -7,7 +7,7 @@ import { useParams } from 'react-router';
 const Episodes = () => {
 
     let { episodeId } = useParams();
-    
+
     const [viseoServers, setViseoServers] = useState([]);
 
     const comment = () => {
@@ -29,11 +29,6 @@ const Episodes = () => {
             .catch(err => console.log(err));
     }, [episodeId]);
 
-    let episodeTitle = episodeId.split('-')
-    const episodeNumber = episodeTitle[episodeTitle.length - 1];
-    episodeTitle.pop();
-    episodeTitle = episodeTitle.join(' ');
-    episodeTitle = episodeTitle.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 
     return (
         <div className='bg-zinc-800'>
