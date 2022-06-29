@@ -14,6 +14,7 @@ const Episodes = () => {
     backToTop();
 
     let { episodeId } = useParams();
+
     const [viseoServers, setViseoServers] = useState([]);
 
     const comment = () => {
@@ -30,49 +31,50 @@ const Episodes = () => {
             .then(data => {
                 if (data['video_servers'].length) {
                     setViseoServers(data['video_servers']);
-                    console.log(data);
                 }
             })
             .catch(err => console.log(err));
     }, [episodeId]);
 
+    let episodeTitle = episodeId.split('-')
+    // last item in array is the episode number
+    const episodeNumber = episodeTitle[episodeTitle.length - 1];
+    // remove last item from array
+    episodeTitle.pop();
+    // join array back together with sapce between items
+    episodeTitle = episodeTitle.join(' ');
+    // capitalize first letter of each word
+    episodeTitle = episodeTitle.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
 
     return (
         <div className='bg-zinc-800'>
             <Navbar />
             <div className='w-5/6 mx-auto '>
-                <h1 className='px-5 pt-5 text-2xl font-bold text-white'>Episodes Title</h1>
-                <h1 className='px-5 py-2'>Episodes no.</h1>
+                <h1 className='px-5 pt-5 text-2xl font-bold text-white'>{episodeTitle}</h1>
+                <h1 className='px-5 py-2'>Episodes no. {episodeNumber}</h1>
                 <div className='flex'>
                     <div className='w-5/6  lg:w-[70%] mx-auto px-5 mr-5 pt-5'>
-                        {
-                            viseoServers.length ?
-                                <Tabs>
-                                    <TabList>
-                                        {viseoServers[0]?.map((server, index) => {
-                                            return (
-                                                <Tab key={index}>{server.server}</Tab>
-                                            )
-                                        })}
-                                    </TabList>
+                        <Tabs>
+                            <TabList>
+                                {viseoServers[0]?.map((server, index) => {
+                                    return (
+                                        <Tab key={index}>{server.title}</Tab>
+                                    )
+                                })}
+                            </TabList>
 
 
-                                    {viseoServers[0]?.map((server, index) => {
-                                        return (
-                                            <TabPanel key={index}>
-                                                <div className="relative pt-[56%]">
-                                                    <iframe allowFullScreen className="absolute inset-0 w-full h-full" src={server.code} frameBorder="0" title="1"></iframe>
-                                                </div>
-                                            </TabPanel>
-                                        )
-                                    })}
+                            {viseoServers[0]?.map((server, index) => {
+                                return (
+                                    <TabPanel key={index}>
+                                        <div className="relative pt-[56%]">
+                                            <iframe allowFullScreen className="absolute inset-0 w-full h-full" src={server.code} frameBorder="0" title="1"></iframe>
+                                        </div>
+                                    </TabPanel>
+                                )
+                            })}
 
-                                </Tabs>
-                                :
-                                <div className='min-h-[30vw] flex justify-center items-center'>
-                                    <button className="btn loading">loading episode...</button>
-                                </div>
-                        }
+                        </Tabs>
 
                         <div className='flex justify-end'>
                             <button onClick={nextEpisodeClicked} className='bg-green-500 text-white px-5 py-2 rounded mt-5 text-right'>Next episode <i className="bi bi-arrow-right-circle-fill"></i> </button>

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../../components/common/Navbar';
 import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
 
 const Anime = () => {
 
     let { animeId } = useParams();
-
 
 
     const [anime, setAnime] = useState([]);
@@ -51,7 +51,7 @@ const Anime = () => {
                         </div>
                         <div>
                             <button className="btn bg-zinc-700 text-gray-200 btn-sm  gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
                                 Add to favorites
                             </button>
                         </div>
@@ -97,22 +97,26 @@ const Anime = () => {
 
                     {
                         anime && anime['episodes'].map(episode => {
+                            // replate / to -slash- of episode_id
+                            const episode_id = episode['id'].replace(/\//g, '-slash-');
                             return (
                                 <>
-                                    <div className='flex px-5 items-center my-5 hover:text-sky-500'>
-                                        <div>
-                                            <i className="bi bi-play-circle-fill text-3xl text-sky-500"></i>
-                                        </div>
-                                        <div className='rounded'>
-                                            <img className=' h-24  px-5' src={`data:image/png;base64,${episode['imagePreview']}`} alt="" />
-                                        </div>
-                                        <div>
-                                            <h3 className='font-bold text-gray-700 font-lg'>{episode.title}</h3>
-                                            <h3>Episode: {episode.episode} </h3>
-                                        </div>
+                                    <Link to={`/episodes/${episode_id}`}>
+                                        <div className='flex px-5 items-center my-5 hover:text-sky-500'>
+                                            <div>
+                                                <i className="bi bi-play-circle-fill text-3xl text-sky-500"></i>
+                                            </div>
+                                            <div className='rounded'>
+                                                <img className=' h-24  px-5' src={`data:image/png;base64,${episode['imagePreview']}`} alt="" />
+                                            </div>
+                                            <div>
+                                                <h3 className='font-bold text-gray-700 font-lg'>{episode.title}</h3>
+                                                <h3>Episode: {episode.episode} </h3>
+                                            </div>
 
-                                    </div>
-                                    <hr className='border-gray-200' />
+                                        </div>
+                                        <hr className='border-gray-200' />
+                                    </Link>
                                 </>
 
                             )
