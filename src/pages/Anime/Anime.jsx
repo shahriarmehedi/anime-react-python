@@ -8,7 +8,6 @@ const Anime = () => {
     let { animeId } = useParams();
 
 
-
     const [anime, setAnime] = useState([]);
 
     // console.log(animes);
