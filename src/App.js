@@ -7,43 +7,46 @@ import PrivacyPolicy from './pages/PrivacyPolicy/PrivacyPolicy';
 import TermsAndConditions from './pages/TermsAndConditions/TermsAndConditions';
 import Footer from './components/common/Footer';
 import { useEffect, useState } from 'react';
+import Signup from './pages/Signup';
+import Login from './pages/Login';
+import SearchPage from './pages/SearchPage/SearchPage';
 
 
 function App() {
 
-  
+
   const [latestAnimes, setLatestAnimes] = useState([]);
   const [latestEpisodes, setLatestEpisodes] = useState([]);
   const [randomAnimes, setRandomAnimes] = useState([]);
 
 
   useEffect(() => {
-      fetch('https://anime-python-backend.herokuapp.com/latest-animes')
-          .then(res => res.json())
-          .then(data => {
-              setLatestAnimes(data);
-          })
-          .catch(err => console.log(err));
+    fetch('https://anime-python-backend.herokuapp.com/latest-animes')
+      .then(res => res.json())
+      .then(data => {
+        setLatestAnimes(data);
+      })
+      .catch(err => console.log(err));
   }, []);
 
-    useEffect(() => {
-        fetch('https://anime-python-backend.herokuapp.com/latest-episodes')
-            .then(res => res.json())
-            .then(data => {
-                setLatestEpisodes(data);
-            })
-            .catch(err => console.log(err));
-    }, []);
-    
+  useEffect(() => {
+    fetch('https://anime-python-backend.herokuapp.com/latest-episodes')
+      .then(res => res.json())
+      .then(data => {
+        setLatestEpisodes(data);
+      })
+      .catch(err => console.log(err));
+  }, []);
 
-    useEffect(() => {
-        fetch('https://anime-python-backend.herokuapp.com/browse-animes')
-            .then(res => res.json())
-            .then(data => {
-              setRandomAnimes(data);
-            })
-            .catch(err => console.log(err));
-    }, []);
+
+  useEffect(() => {
+    fetch('https://anime-python-backend.herokuapp.com/browse-animes')
+      .then(res => res.json())
+      .then(data => {
+        setRandomAnimes(data);
+      })
+      .catch(err => console.log(err));
+  }, []);
 
 
   return (
@@ -55,6 +58,9 @@ function App() {
           <Route path="/episodes/:episodeId" element={<Episodes />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-conditions" element={<TermsAndConditions />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/search-result" element={<SearchPage latestAnimes={latestAnimes} />} />
         </Routes>
         <Footer />
       </BrowserRouter>

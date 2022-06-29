@@ -4,14 +4,17 @@ import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 
 const Anime = () => {
-    const backToTop = () => {
-        window.scrollTo({
-            top: 0
-        });
-    }
-    backToTop();
 
-    let { animeId } = useParams();
+    useEffect(() => {
+        const backToTop = () => {
+            window.scrollTo({
+                top: 0,
+            });
+        }
+        backToTop();
+    }, []);
+
+    const { animeId } = useParams();
 
 
     const [anime, setAnime] = useState([]);
@@ -19,13 +22,11 @@ const Anime = () => {
     // console.log(animes);
 
     useEffect(() => {
-        console.log(animeId);
         fetch(`${process.env.REACT_APP_BASEURL}/anime-info/${animeId}`)
             .then(res => res.json())
             .then(data => {
                 if (data['info']) {
                     setAnime(data['info']);
-                    console.log(data);
                 }
             })
             .catch(err => console.log(err));
