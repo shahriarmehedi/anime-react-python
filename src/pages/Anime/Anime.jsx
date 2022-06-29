@@ -4,6 +4,13 @@ import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 
 const Anime = () => {
+    
+    const backToTop = () => {
+        window.scrollTo({
+            top: 0,
+        });
+    }
+    backToTop();
 
     let { animeId } = useParams();
 
@@ -19,7 +26,6 @@ const Anime = () => {
             .then(data => {
                 if (data['info']) {
                     setAnime(data['info']);
-                    console.log(data);
                 }
             })
             .catch(err => console.log(err));

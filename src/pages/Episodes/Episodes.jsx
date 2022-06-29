@@ -3,28 +3,27 @@ import Navbar from '../../components/common/Navbar';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
 
 const Episodes = () => {
 
     const backToTop = () => {
         window.scrollTo({
             top: 0,
-            behavior: 'smooth'
         });
     }
     backToTop();
 
     let { episodeId } = useParams();
+    console.log(episodeId);
 
+    const [nextEpisode, setNextEpisode] = useState("");
     const [viseoServers, setViseoServers] = useState([]);
 
     const comment = () => {
         alert('Comment button is working');
     }
 
-    const nextEpisodeClicked = () => {
-        alert('Next episode button is working');
-    }
 
     useEffect(() => {
         fetch(`${process.env.REACT_APP_BASEURL}/episode-info/${episodeId}`)
@@ -40,8 +39,39 @@ const Episodes = () => {
     let episodeTitle = episodeId.split('-')
     const episodeNumber = episodeTitle[episodeTitle.length - 1];
     episodeTitle.pop();
+    // if 'slash' is in the title, remove the 1st and 2nd item
+    if (episodeTitle.includes('slash')) {
+        episodeTitle.shift();
+        episodeTitle.shift();
+    }
     episodeTitle = episodeTitle.join(' ');
     episodeTitle = episodeTitle.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+
+
+    useEffect(() => {
+        fetch(`${process.env.REACT_APP_BASEURL}/next-episode`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    anime_title: episodeTitle,
+                    episode_number: episodeNumber
+                    })
+                })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data['next_episode']) {
+                    const nextEpisode = data['next_episode']['id'].replace(/\//g, '-slash-')
+                    setNextEpisode(nextEpisode);
+                } else {
+                    setNextEpisode("");
+                }
+            })
+            .catch(err => console.log(err));
+    }, [episodeTitle, episodeNumber]);
+
 
     return (
         <div className='bg-zinc-800'>
@@ -81,7 +111,14 @@ const Episodes = () => {
                         }
 
                         <div className='flex justify-end'>
-                            <button onClick={nextEpisodeClicked} className='bg-green-500 text-white px-5 py-2 rounded mt-5 text-right'>Next episode <i className="bi bi-arrow-right-circle-fill"></i> </button>
+                            {nextEpisode ?(
+                                <Link to={`/episodes/${nextEpisode}`}>
+                                    <button onClick={()=> setViseoServers([])} className='bg-green-500 text-white px-5 py-2 rounded mt-5 text-right'>Next episode <i className="bi bi-arrow-right-circle-fill"></i> </button>
+                                </Link>
+                            ):(
+                                <button className='cursor-not-allowed bg-gray-500 text-white px-5 py-2 rounded mt-5 text-right'>Next episode <i className="bi bi-arrow-right-circle-fill"></i> </button>
+                            )}
+                            
                         </div>
                     </div>
                     <div className='w-5/6  lg:w-[30%] mx-auto mt-16'>
