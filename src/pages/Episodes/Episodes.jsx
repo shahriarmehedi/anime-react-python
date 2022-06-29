@@ -30,13 +30,9 @@ const Episodes = () => {
     }, [episodeId]);
 
     let episodeTitle = episodeId.split('-')
-    // last item in array is the episode number
     const episodeNumber = episodeTitle[episodeTitle.length - 1];
-    // remove last item from array
     episodeTitle.pop();
-    // join array back together with sapce between items
     episodeTitle = episodeTitle.join(' ');
-    // capitalize first letter of each word
     episodeTitle = episodeTitle.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 
     return (

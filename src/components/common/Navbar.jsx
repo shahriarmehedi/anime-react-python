@@ -10,13 +10,13 @@ const Navbar = () => {
             <nav className=" bg-base-100">
                 <div className="navbar flex justify-between w-5/6 mx-auto">
                     <div className="">
-                        <a className="btn btn-ghost normal-case text-xl">Anime</a>
+                        <NavLink to='/' className="btn btn-ghost normal-case text-xl">Anime</NavLink>
                         <div className='flex ml-10'>
-                            <NavLink to='/' className="btn btn-ghost">
+                            {/* <NavLink to='/' className="btn btn-ghost">
                                 <div className='px-4 cursor-pointer'>
                                     <h3 className='text-gray-400'>Home</h3>
                                 </div>
-                            </NavLink>
+                            </NavLink> */}
 
 
                         </div>
