@@ -5,6 +5,13 @@ import 'react-tabs/style/react-tabs.css';
 import { useParams } from 'react-router';
 
 const Episodes = () => {
+    const backToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+    backToTop();
 
     let { episodeId } = useParams();
     const [viseoServers, setViseoServers] = useState([]);
@@ -38,40 +45,34 @@ const Episodes = () => {
                 <h1 className='px-5 py-2'>Episodes no.</h1>
                 <div className='flex'>
                     <div className='w-5/6  lg:w-[70%] mx-auto px-5 mr-5 pt-5'>
-                        <Tabs>
-                            <TabList>
-                                {viseoServers[0]?.map((server, index) => {
-                                    return (
-                                        <Tab key={index}>{server.server}</Tab>
-                                    )
-                                })}
-                            </TabList>
+                        {
+                            viseoServers.length ?
+                                <Tabs>
+                                    <TabList>
+                                        {viseoServers[0]?.map((server, index) => {
+                                            return (
+                                                <Tab key={index}>{server.server}</Tab>
+                                            )
+                                        })}
+                                    </TabList>
 
 
-                            {viseoServers[0]?.map((server, index) => {
-                                return (
-                                    <TabPanel key={index}>
-                                        <div className="relative pt-[56%]">
-                                            <iframe allowFullScreen className="absolute inset-0 w-full h-full" src={server.code} frameBorder="0" title="1"></iframe>
-                                        </div>
-                                    </TabPanel>
-                                )
-                            })}
+                                    {viseoServers[0]?.map((server, index) => {
+                                        return (
+                                            <TabPanel key={index}>
+                                                <div className="relative pt-[56%]">
+                                                    <iframe allowFullScreen className="absolute inset-0 w-full h-full" src={server.code} frameBorder="0" title="1"></iframe>
+                                                </div>
+                                            </TabPanel>
+                                        )
+                                    })}
 
-
-
-
-                            {/* <TabPanel>
-                                <div className="relative pt-[56%]">
-                                    <iframe allowFullScreen className="absolute inset-0 w-full h-full" src="https://mega.nz/embed#!09Ei3YLT!aYDCqbZ_G62gDnIl5xH1DIkrTZh5T1xsKVLqBGew04M'" frameBorder="0" title="1"></iframe>
+                                </Tabs>
+                                :
+                                <div className='min-h-[30vw] flex justify-center items-center'>
+                                    <button className="btn loading">loading episode...</button>
                                 </div>
-                            </TabPanel>
-                            <TabPanel>
-                                <div className="relative pt-[56%]">
-                                    <iframe allowFullScreen className="absolute inset-0 w-full h-full" src="https://mega.nz/embed#!09Ei3YLT!aYDCqbZ_G62gDnIl5xH1DIkrTZh5T1xsKVLqBGew04M'" frameBorder="0" title="1"></iframe>
-                                </div>
-                            </TabPanel> */}
-                        </Tabs>
+                        }
 
                         <div className='flex justify-end'>
                             <button onClick={nextEpisodeClicked} className='bg-green-500 text-white px-5 py-2 rounded mt-5 text-right'>Next episode <i className="bi bi-arrow-right-circle-fill"></i> </button>

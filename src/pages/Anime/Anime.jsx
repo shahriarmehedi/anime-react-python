@@ -28,9 +28,12 @@ const Anime = () => {
 
     if (anime.length === 0) {
         return (
-            <div className='min-h-screen flex justify-center items-center'>
-                <button className="btn loading">loading...</button>
-            </div>
+            <>
+                <Navbar />
+                <div className='min-h-screen bg-zinc-800 flex justify-center items-center'>
+                    <button className="btn loading">loading...</button>
+                </div>
+            </>
         )
 
     }
