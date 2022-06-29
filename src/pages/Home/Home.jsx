@@ -8,16 +8,16 @@ import Slider from '../../components/Slider';
 
 
 
-const Home = () => {
+const Home = ({latestAnimes, randomAnimes, latestEpisodes}) => {
 
     return (
         <div>
             <Navbar />
             <Slider />
-            <LatestEpisodes />
-            <LatestAddedAnimes />
+            <LatestEpisodes latestEpisodes={latestEpisodes} />
+            <LatestAddedAnimes latestAnimes={latestAnimes} />
             {/* <RecommendedAnime /> */}
-            <RandomAnime />
+            <RandomAnime randomAnimes={randomAnimes} />
         </div>
     );
 };

@@ -1,19 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 
-const LatestAddedAnimes = () => {
-
-    const [latestAnimes, setLatestAnimes] = useState([]);
-
-    useEffect(() => {
-        fetch('https://anime-python-backend.herokuapp.com/latest-animes')
-            .then(res => res.json())
-            .then(data => {
-                setLatestAnimes(data);
-            })
-            .catch(err => console.log(err));
-    }, []);
+const LatestAddedAnimes = ({latestAnimes}) => {
 
 
     if (!latestAnimes.length) {

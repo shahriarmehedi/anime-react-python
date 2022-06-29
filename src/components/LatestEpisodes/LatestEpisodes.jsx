@@ -1,19 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
-const LatestEpisodes = () => {
+const LatestEpisodes = ({latestEpisodes}) => {
     //const url = process.env.DEPLOYEDURL;
 
-    const [latestEpisodes, setLatestEpisodes] = useState([]);
-
-    useEffect(() => {
-        fetch('https://anime-python-backend.herokuapp.com/latest-episodes')
-            .then(res => res.json())
-            .then(data => {
-                setLatestEpisodes(data);
-            })
-            .catch(err => console.log(err));
-    }, []);
+    
 
     if (!latestEpisodes.length) {
         return (
