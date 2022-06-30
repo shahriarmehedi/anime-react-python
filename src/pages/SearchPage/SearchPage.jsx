@@ -36,7 +36,7 @@ const SearchPage = () => {
                     {noResults ? <h1 className='text-white text-xl'>No results found for "{searchQuery}"</h1> : (
                         <>
                             <button className="btn loading normal-case">Searching for  "{searchQuery}"  ...</button>
-                            <h3 className='py-5 text-gray-400'>It may take up to 1 minute, please be patient</h3>
+                            <h3 className='py-5 text-gray-400'>It may take up to 20 seconds, please be patient</h3>
                         </>
                     )}
                 </div>
