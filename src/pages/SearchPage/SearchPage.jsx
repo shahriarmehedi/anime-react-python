@@ -26,7 +26,7 @@ const SearchPage = () => {
         return (
             <>
                 <Navbar />
-                <div className=' h-[40vw]  flex flex-col justify-center items-center'>
+                <div className=' h-[40vw] bg-zinc-800  flex flex-col justify-center items-center'>
 
                     <button className="btn loading normal-case">Searching for  "{searchQuery}"  ...</button>
 
