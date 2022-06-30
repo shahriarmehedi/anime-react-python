@@ -6,6 +6,7 @@ import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import Comment from './Comment';
 import animeuser from '../../assets/images/animeuser.png';
+import Swal from 'sweetalert2';
 
 const Episodes = () => {
 
@@ -82,13 +83,13 @@ const Episodes = () => {
             })
             .catch(err => console.log(err));
     }, [episodeId]);
-    
+
 
     const addComment = () => {
         const token = localStorage.getItem('token');
         console.log(token);
         if (!token) {
-            alert("You must be logged in to comment");
+            Swal.fire('You must be logged in to comment')
             return;
         }
 
@@ -194,7 +195,7 @@ const Episodes = () => {
                                     <img src={animeuser} alt="" />
                                 </div>
                             </div>
-                            <textarea value={myComment} onChange={(e)=> setMyComment(e.target.value)} className="textarea w-full mx-3" placeholder="Write your comment here"></textarea>
+                            <textarea value={myComment} onChange={(e) => setMyComment(e.target.value)} className="textarea w-full mx-3" placeholder="Write your comment here"></textarea>
 
                         </div>
                         <div className='flex justify-end mr-3'>
