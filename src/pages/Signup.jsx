@@ -34,7 +34,7 @@ const Signup = () => {
                         setError(data.error);
                     } else {
                         localStorage.setItem('token', data.token);
-                        window.location.href = '/';
+                        window.history.back();
                     }
                 })
                 .catch(err => console.log(err));
