@@ -59,7 +59,7 @@ function App() {
           <Route path="/terms-conditions" element={<TermsAndConditions />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/search-result" element={<SearchPage latestAnimes={latestAnimes} />} />
+          <Route path="/search-result/:searchQuery" element={<SearchPage latestAnimes={latestAnimes} />} />
         </Routes>
         <Footer />
       </BrowserRouter>
