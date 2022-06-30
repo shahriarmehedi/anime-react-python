@@ -4,7 +4,6 @@ import { Link, useParams } from 'react-router-dom';
 const SearchPage = () => {
 
     const { searchQuery } = useParams();
-    console.log(searchQuery);
 
     const [animes, setAnimes] = useState([]);
 
@@ -18,21 +17,15 @@ const SearchPage = () => {
                     setAnimes(data['results']);
                 }
             }
-            )
+            )   
             .catch(err => console.log(err));
     }, [searchQuery]);
 
     if (!animes.length) {
         return (
-            <>
-                <Navbar />
-                <div className=' h-[40vw]  flex flex-col justify-center items-center'>
-
-                    <button className="btn loading normal-case">Searching for  "{searchQuery}"  ...</button>
-
-                    <h3 className='py-5 text-gray-400'>It may take up to 1 minute, please be patient</h3>
-                </div>
-            </>
+            <div className=' h-[50vw]  flex justify-center items-center'>
+                <button className="btn loading">Searching...</button>
+            </div>
         )
     }
 
