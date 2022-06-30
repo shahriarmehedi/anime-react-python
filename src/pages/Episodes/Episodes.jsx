@@ -4,6 +4,8 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
+import Comment from './Comment';
+import animeuser from '../../assets/images/animeuser.png';
 
 const Episodes = () => {
 
@@ -20,10 +22,8 @@ const Episodes = () => {
 
     const [nextEpisode, setNextEpisode] = useState("");
     const [viseoServers, setViseoServers] = useState([]);
-
-    const comment = () => {
-        alert('Comment button is working');
-    }
+    const [comments, setComments] = useState([]);
+    const [myComment, setMyComment] = useState("");
 
 
     useEffect(() => {
@@ -72,6 +72,48 @@ const Episodes = () => {
             })
             .catch(err => console.log(err));
     }, [episodeTitle, episodeNumber]);
+
+
+    useEffect(() => {
+        fetch(`${process.env.REACT_APP_BASEURL}/get-comments/${episodeId}`)
+            .then(res => res.json())
+            .then(data => {
+                setComments(data);
+            })
+            .catch(err => console.log(err));
+    }, [episodeId]);
+    
+
+    const addComment = () => {
+        const token = localStorage.getItem('token');
+        console.log(token);
+        if (!token) {
+            alert("You must be logged in to comment");
+            return;
+        }
+
+        fetch(`${process.env.REACT_APP_BASEURL}/add-comment`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${token}`
+
+            },
+            body: JSON.stringify({
+                anime_id: episodeId,
+                comment: myComment
+            })
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data['success']) {
+                    setComments(data['comments']);
+                    setMyComment("");
+                }
+            })
+            .catch(err => console.log(err));
+    }
 
 
     return (
@@ -139,47 +181,25 @@ const Episodes = () => {
 
                         {/* --------------ALL COMMENTS----------- */}
 
-                        <div className='bg-zinc-700 rounded-md flex items-center my-3 py-3'>
-                            <div className="avatar">
-                                <div className=" w-7 lg:w-14 mx-2 mask mask-squircle">
-                                    <img src="https://api.lorem.space/image/face?hash=47449" alt="" />
-                                </div>
-                            </div>
-                            <div className='mx-3'>
-                                <p>Lorem ipsum dolor sit amet.</p>
-                            </div>
-                        </div>
-                        <div className='bg-zinc-700 rounded-md flex items-center my-3 py-3'>
-                            <div className="avatar">
-                                <div className=" w-7 lg:w-14 mx-2 mask mask-squircle">
-                                    <img src="https://api.lorem.space/image/face?hash=47449" alt="" />
-                                </div>
-                            </div>
-                            <div className='mx-3'>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae odit delectus expedita vel officia et omnis temporibus corrupti maxime ut?</p>
-                            </div>
-                        </div>
-
-
+                        {comments?.map((comment, index) => {
+                            return (<Comment key={index} data={comment} />)
+                        })}
 
 
                         {/* ------------WRITE NEW COMMENTS---------- */}
 
-                        <form onSubmit={comment}>
-                            <div className='flex items-center'>
-
-                                <div className="avatar">
-                                    <div className=" w-7 lg:w-14 mx-2 mask mask-squircle">
-                                        <img src="https://api.lorem.space/image/face?hash=47449" alt="" />
-                                    </div>
+                        <div className='flex items-center'>
+                            <div className="avatar">
+                                <div className=" w-7 lg:w-14 mx-2 rounded-full">
+                                    <img src={animeuser} alt="" />
                                 </div>
-                                <textarea className="textarea w-full mx-3" placeholder="Write your comment here"></textarea>
+                            </div>
+                            <textarea value={myComment} onChange={(e)=> setMyComment(e.target.value)} className="textarea w-full mx-3" placeholder="Write your comment here"></textarea>
 
-                            </div>
-                            <div className='flex justify-end mr-3'>
-                                <button type='submit' className='bg-sky-500 text-white px-5 py-2 rounded mt-5 text-right'>Comment</button>
-                            </div>
-                        </form>
+                        </div>
+                        <div className='flex justify-end mr-3'>
+                            <button onClick={addComment} type='button' className='bg-sky-500 text-white px-5 py-2 rounded mt-5 text-right'>Comment</button>
+                        </div>
                     </div>
                     <div className='w-5/6  lg:w-[30%] mx-auto '>
 

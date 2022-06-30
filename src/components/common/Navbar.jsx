@@ -1,9 +1,22 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useEffect } from 'react';
+import { NavLink, Link } from 'react-router-dom';
 import Logo from '../../assets/images/PicsArt_06-29-09.42.02-min.png';
+import animeuser from '../../assets/images/animeuser.png';
 const Navbar = () => {
 
+    const [loggedIn, setLoggedIn] = useState(false);
 
+    useEffect(() => {
+        if (localStorage.getItem('token')) {
+            setLoggedIn(true);
+        }
+    }, []);
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        setLoggedIn(false);
+    }
 
     return (
         <>
@@ -26,23 +39,31 @@ const Navbar = () => {
                                 </button>
                             </div>
                         </div>
-                        <div className="dropdown dropdown-end">
-                            <label tabIndex="0" className="btn btn-ghost btn-circle avatar">
-                                <div className="w-10 rounded-full">
-                                    <img className='' src="https://api.lorem.space/image/face?hash=33791" />
-                                </div>
-                            </label>
-                            <ul tabIndex="0" className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
-                                <li>
-                                    <a className="justify-between">
-                                        Profile
-                                        <span className="badge">New</span>
-                                    </a>
-                                </li>
-                                <li><a>Settings</a></li>
-                                <li><a>Logout</a></li>
-                            </ul>
-                        </div>
+                        {loggedIn ?(
+                            <div className="dropdown dropdown-end">
+                                <label tabIndex="0" className="btn btn-ghost btn-circle avatar">
+                                    <div className="w-10 rounded-full">
+                                        <img className='' src={animeuser} alt="" />
+                                    </div>
+                                </label>
+                                <ul tabIndex="0" className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
+                                    <li>
+                                        <a className="justify-between" href='/#'>
+                                            Profile
+                                            <span className="badge">New</span>
+                                        </a>
+                                    </li>
+                                    <li><a href='/#'>Settings</a></li>
+                                    <li><a onClick={handleLogout} >Logout</a></li>
+                                </ul>
+                            </div>
+                        ):(
+                            <Link to="/login">
+                                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4" >
+                                    <span>Login</span>
+                                </button>
+                            </Link>
+                        )}
                     </div>
                 </div>
                 <div class="form-control w-5/6 mx-auto block md:hidden pb-3">
