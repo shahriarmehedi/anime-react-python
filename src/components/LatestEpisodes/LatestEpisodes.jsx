@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const LatestEpisodes = ({latestEpisodes}) => {
+const LatestEpisodes = ({ latestEpisodes }) => {
     //const url = process.env.DEPLOYEDURL;
 
-    
+
 
     if (!latestEpisodes.length) {
         return (
@@ -21,11 +21,11 @@ const LatestEpisodes = ({latestEpisodes}) => {
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5 cursor-pointer'>
                 {latestEpisodes.map(episode => {
                     const id_name = episode.id_name;
-                    return(
+                    return (
                         <div key={episode.id}>
                             <Link to={`/episodes/${id_name}`}>
                                 <div className="hover:scale-110  relative flex justify-center items-center transition duration-300 hover:text-white">
-                                    <img className='mx-auto hover:opacity-90 transition duration-300 opacity-70 border-[3px] shadow rounded-md border-white' src={`https://anime-python-backend.herokuapp.com${episode.image}`} alt={episode.title} />
+                                    <img className='mx-auto object-cover hover:opacity-90 transition duration-300 opacity-70 border-[3px] shadow rounded-md border-white' src={`https://anime-python-backend.herokuapp.com${episode.image}`} alt={episode.title} />
                                     <button className="absolute">
                                         <i className="bi bi-play-circle-fill text-4xl shadow-lg opacity-80 text-white"></i>
                                     </button>

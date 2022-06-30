@@ -91,6 +91,8 @@ const Episodes = () => {
         if (!token) {
             Swal.fire('You must be logged in to comment')
             return;
+        } else if (myComment === "") {
+            return;
         }
 
         fetch(`${process.env.REACT_APP_BASEURL}/add-comment`, {
@@ -107,7 +109,6 @@ const Episodes = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 if (data['success']) {
                     setComments(data['comments']);
                     setMyComment("");

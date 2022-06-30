@@ -42,7 +42,7 @@ const Signup = () => {
                             showConfirmButton: false,
                             timer: 1500
                         })
-                        window.location.href = '/';
+                        window.history.back();
                     }
                 })
                 .catch(err => console.log(err));

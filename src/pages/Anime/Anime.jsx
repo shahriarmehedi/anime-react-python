@@ -94,9 +94,7 @@ const Anime = () => {
                 <div className='lg:w-[75%] mx-auto bg-white rounded my-10 lg:my-0  h-[830px] overflow-y-auto'>
                     <div className='bg-white flex items-center justify-between my-3 mx-5 sticky top-0'>
                         <h3 className='py-2 lg:text-2xl font-bold text-gray-700'>List of episodes</h3>
-                        <div>
-                            <input type="text" placeholder="Search here..." className="input input-bordered input-info w-36 lg:w-full" />
-                        </div>
+
                     </div>
 
                     {/*--------- E P I S O D E S---------- */}
