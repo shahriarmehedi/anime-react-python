@@ -50,13 +50,13 @@ const Anime = () => {
             <div>
                 <img className='w-full h-[320px] lg:h-[250px] object-cover' src={anime && `data:image/png;base64,${anime['banner']}`} alt="" />
                 <div className='w-full mx-auto absolute text-center lg:text-left top-[100px] lg:top-[230px] lg:left-[380px] lg:w-[62%]'>
-                    <div className='flex flex-col lg:flex-row items-center lg:justify-between'>
+                    <div className='flex flex-col lg:flex-row items-center lg:justify-between mt-12 lg:mt-0'>
                         <div className='flex flex-col lg:flex-row items-center'>
                             <h1 className='w-5/6 mx-auto lg:w-full text-center text-white text-xl lg:text-2xl font-semibold' >{anime?.title}</h1>
                             <div className="badge badge-accent mt-5 lg:m-2">{anime?.type}</div>
                         </div>
                         <div className='py-3 lg:py-0'>
-                            <button className="btn bg-zinc-700 text-gray-200 btn-sm  gap-2">
+                            <button className="btn bg-zinc-700 text-gray-200 btn-sm text-xs gap-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
                                 Add to favorites
                             </button>
