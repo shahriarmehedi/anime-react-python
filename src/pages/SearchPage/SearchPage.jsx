@@ -6,9 +6,16 @@ const SearchPage = () => {
     const { searchQuery } = useParams();
 
     const [animes, setAnimes] = useState([]);
+    const [noResults, setNoResults] = useState(false);
 
     useEffect(() => {
         setAnimes([])
+
+        setNoResults(false)
+        setTimeout(() => {
+            setNoResults(true)
+        }, 60000);
+
         fetch(`${process.env.REACT_APP_BASEURL}/search-result/${searchQuery}`)
             .then(res => res.json())
             .then(data => {
@@ -23,9 +30,17 @@ const SearchPage = () => {
 
     if (!animes.length) {
         return (
-            <div className=' h-[50vw]  flex justify-center items-center'>
-                <button className="btn loading">Searching...</button>
-            </div>
+            <>
+                <Navbar />
+                <div className=' h-[40vw] bg-zinc-800  flex flex-col justify-center items-center'>
+                    {noResults ? <h1 className='text-white text-xl'>No results found for "{searchQuery}"</h1> : (
+                        <>
+                            <button className="btn loading normal-case">Searching for  "{searchQuery}"  ...</button>
+                            <h3 className='py-5 text-gray-400'>It may take up to 1 minute, please be patient</h3>
+                        </>
+                    )}
+                </div>
+            </>
         )
     }
 
@@ -33,7 +48,7 @@ const SearchPage = () => {
         <div className='bg-zinc-800'>
             <Navbar />
             <div className='w-5/6 mx-auto pb-10'>
-                <h1 className='py-5 text-2xl font-semibold text-white'>Search results</h1>
+                <h1 className='py-5 text-2xl font-semibold text-white'>Search results for "{searchQuery}"</h1>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5 cursor-pointer'>
                     {animes.map(anime => {
                         let id_name = anime.id; // "/anime/kaginado-season-2"
