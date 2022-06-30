@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Navbar from '../components/common/Navbar';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const Signup = () => {
     const [signupData, setSignupData] = useState({
@@ -34,6 +35,13 @@ const Signup = () => {
                         setError(data.error);
                     } else {
                         localStorage.setItem('token', data.token);
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Successfully created account',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
                         window.location.href = '/';
                     }
                 })
@@ -69,7 +77,7 @@ const Signup = () => {
                             <label for="password2" class="leading-7 text-sm text-gray-400">Retype password</label>
                             <input onChange={(e) => setSignupData({ ...signupData, confirmPassword: e.target.value })} type="password" id="password2" name="password2" class="w-full bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-blue-900 rounded border border-gray-600 focus:border-blue-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" />
                         </div>
-                        {loading? <button className="btn loading">loading...</button> : <button onClick={createAccount} class="text-white bg-blue-500 border-0 py-2 px-8 focus:outline-none hover:bg-blue-600 rounded text-lg">Create an account</button>}
+                        {loading ? <button className="btn loading">loading...</button> : <button onClick={createAccount} class="text-white bg-blue-500 border-0 py-2 px-8 focus:outline-none hover:bg-blue-600 rounded text-lg">Create an account</button>}
                         <p class="text-xs mt-3">Already have an account? <Link to="/login" className="underline text-blue-500" >Log in</Link> here.</p>
                     </div>
                 </div>

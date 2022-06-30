@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import Logo from '../../assets/images/PicsArt_06-29-09.42.02-min.png';
 import animeuser from '../../assets/images/animeuser.png';
+import Swal from 'sweetalert2';
 const Navbar = () => {
 
     const [loggedIn, setLoggedIn] = useState(false);
@@ -16,6 +17,13 @@ const Navbar = () => {
     const handleLogout = () => {
         localStorage.removeItem('token');
         setLoggedIn(false);
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Succesfully logged out',
+            showConfirmButton: false,
+            timer: 1500
+        })
     }
 
     return (
@@ -39,7 +47,7 @@ const Navbar = () => {
                                 </button>
                             </div>
                         </div>
-                        {loggedIn ?(
+                        {loggedIn ? (
                             <div className="dropdown dropdown-end">
                                 <label tabIndex="0" className="btn btn-ghost btn-circle avatar">
                                     <div className="w-10 rounded-full">
@@ -57,7 +65,7 @@ const Navbar = () => {
                                     <li><a onClick={handleLogout} >Logout</a></li>
                                 </ul>
                             </div>
-                        ):(
+                        ) : (
                             <Link to="/login">
                                 <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4" >
                                     <span>Login</span>
