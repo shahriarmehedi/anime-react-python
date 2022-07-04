@@ -1,6 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../../components/common/Navbar';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import SearchItem from './SearchItem';
+
+const toDataURL = url => fetch(url)
+  .then(response => response.blob())
+  .then(blob => new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.onloadend = () => resolve(reader.result)
+    reader.onerror = reject
+    reader.readAsDataURL(blob)
+  }))
+
+
+toDataURL('https://www.gravatar.com/avatar/d50c83cc0c6523b4d3f6085295c953e0')
+  .then(dataUrl => {
+    console.log('RESULT:', dataUrl)
+  })
+
 const SearchPage = () => {
 
     const { searchQuery } = useParams();
@@ -14,14 +31,13 @@ const SearchPage = () => {
         setNoResults(false)
         setTimeout(() => {
             setNoResults(true)
-        }, 60000);
+        }, 20000);
 
         fetch(`${process.env.REACT_APP_BASEURL}/search-result/${searchQuery}`)
             .then(res => res.json())
             .then(data => {
                 if (data['results'].length) {
-                    console.log(data);
-                    setAnimes(data['results']);
+                    setAnimes(data['results'])
                 }
             }
             )   
@@ -54,19 +70,7 @@ const SearchPage = () => {
                         let id_name = anime.id; // "/anime/kaginado-season-2"
                         // replace /anime/ to ""
                         id_name = id_name.replace('anime/', '');
-                        return (
-                            <div key={anime.id}>
-                                <Link to={`/anime-info/${id_name}`}>
-                                    <div className="hover:scale-110  relative flex justify-center items-center transition duration-300 hover:text-white">
-                                        <img className='mx-auto hover:opacity-90 transition duration-300 opacity-70 border-[3px] shadow rounded-md border-white' src={`data:image/png;base64,${anime['poster']}`} alt={anime.title} />
-                                        <button className="absolute">
-                                            <i className="bi bi-play-circle-fill text-4xl shadow-lg opacity-80 text-white"></i>
-                                        </button>
-                                    </div>
-                                </Link>
-                                <h2 className='py-4 text-center font-semibold'>{anime.title}</h2>
-                            </div>
-                        )
+                        return <SearchItem id_name={id_name} anime={anime} />
                     })}
                 </div>
             </div>

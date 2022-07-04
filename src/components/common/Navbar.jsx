@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, useNavigate } from 'react-router-dom';
 import Logo from '../../assets/images/PicsArt_06-29-09.42.02-min.png';
 import animeuser from '../../assets/images/animeuser.png';
 import Swal from 'sweetalert2';
-const Navbar = () => {
 
+
+const Navbar = () => {
+    const navigate = useNavigate();
     const [loggedIn, setLoggedIn] = useState(false);
     const [search, setSearch] = useState("");
 
@@ -27,6 +29,15 @@ const Navbar = () => {
         })
     }
 
+
+    const handleSearch = (e) => {
+        // if enter is pressed
+        if (e.keyCode === 13) {
+            navigate(`/search-result/${search}`);
+        }
+    }
+
+
     return (
         <>
             <nav className=" bg-base-100">
@@ -43,7 +54,7 @@ const Navbar = () => {
                         {/* -------------DESKTOP SEARCH-------------- */}
                         <div className="form-control hidden md:block">
                             <div className="input-group">
-                                <input value={search} onChange={(e) => setSearch(e.target.value)} type="text" placeholder="Search…" className="input input-bordered w-full" />
+                                <input value={search} onKeyDown={handleSearch} onChange={(e) => setSearch(e.target.value)} type="text" placeholder="Search…" className="input input-bordered w-full" />
                                 {search ? (
                                     <Link to={`/search-result/${search}`}>
                                         <button className="btn btn-square">
@@ -82,7 +93,7 @@ const Navbar = () => {
                 {/* -----------MOBILE SEARCH------------- */}
                 <div className="form-control w-5/6 mx-auto block md:hidden pb-3">
                     <div className="input-group input-group-xs">
-                        <input value={search} onChange={(e) => setSearch(e.target.value)} type="text" placeholder="Search…" className="input  input-bordered w-full" />
+                        <input value={search} onKeyDown={handleSearch} onChange={(e) => setSearch(e.target.value)} type="text" placeholder="Search…" className="input  input-bordered w-full" />
                         {search ? (
                             <Link to={`/search-result/${search}`}>
                                 <button className="btn btn-square">
