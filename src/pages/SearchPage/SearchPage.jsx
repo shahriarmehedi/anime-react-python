@@ -17,7 +17,7 @@ const SearchPage = () => {
         setNoResults(false)
         setTimeout(() => {
             setNoResults(true)
-        }, 20000);
+        }, 5000);
 
         fetch(`${process.env.REACT_APP_BASEURL}/search-result/${searchQuery}`)
             .then(res => res.json())
@@ -26,7 +26,7 @@ const SearchPage = () => {
                     setAnimes(data['results'])
                 }
             }
-            )   
+            )
             .catch(err => console.log(err));
     }, [searchQuery]);
 
@@ -38,7 +38,7 @@ const SearchPage = () => {
                     {noResults ? <h1 className='text-white text-xl'>No results found for "{searchQuery}"</h1> : (
                         <>
                             <button className="btn loading normal-case">Searching for  "{searchQuery}"  ...</button>
-                            <h3 className='py-5 text-gray-400'>It may take up to 20 seconds, please be patient</h3>
+                            <h3 className='py-5 text-gray-400'>It may take a while please be patient</h3>
                         </>
                     )}
                 </div>
