@@ -21,7 +21,7 @@ function App() {
 
 
   useEffect(() => {
-    fetch('https://anime-python-backend.herokuapp.com/latest-animes')
+    fetch(`${process.env.REACT_APP_BASEURL}/latest-animes`)
       .then(res => res.json())
       .then(data => {
         setLatestAnimes(data);
@@ -30,7 +30,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    fetch('https://anime-python-backend.herokuapp.com/latest-episodes')
+    fetch(`${process.env.REACT_APP_BASEURL}/latest-episodes`)
       .then(res => res.json())
       .then(data => {
         setLatestEpisodes(data);
@@ -39,7 +39,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    fetch('https://anime-python-backend.herokuapp.com/browse-animes')
+    fetch(`${process.env.REACT_APP_BASEURL}/browse-animes`)
       .then(res => res.json())
       .then(data => {
         setRandomAnimes(data);

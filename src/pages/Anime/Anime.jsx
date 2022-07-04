@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../../components/common/Navbar';
 import { useParams } from 'react-router';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Anime = () => {
+    const navigate = useNavigate();
+
     useEffect(() => {
         const backToTop = () => {
             window.scrollTo({
@@ -17,6 +19,7 @@ const Anime = () => {
 
 
     const [anime, setAnime] = useState([]);
+    const [favorite, setFavorite] = useState(false);
 
     // console.log(animes);
 
@@ -30,6 +33,67 @@ const Anime = () => {
             })
             .catch(err => console.log(err));
     }, [animeId]);
+
+    useEffect(() => {
+        if (localStorage.getItem('token')) {
+            fetch(`${process.env.REACT_APP_BASEURL}/check-favorite/${animeId}`)
+                .then(res => res.json())
+                .then(data => {
+                    if (data['favorite']) {
+                        setFavorite(data['favorite']);
+                    }
+                })
+                .catch(err => console.log(err));
+        }
+    }, [animeId]);
+
+
+    const addToFavorites = () => {
+        if (localStorage.getItem('token') === null) {
+            navigate('/login');
+            return
+        }
+
+        fetch(`${process.env.REACT_APP_BASEURL}/add-to-favorites`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${localStorage.getItem('token')}`
+            },
+            body: JSON.stringify({
+                animeId: animeId,
+            })
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data['success']) {
+                    setFavorite(true);
+                }
+            })
+            .catch(err => console.log(err));
+    }
+
+
+    const removeFromFavorites = () => {
+        fetch(`${process.env.REACT_APP_BASEURL}/remove-from-favorites`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Token ${localStorage.getItem('token')}`
+            },
+            body: JSON.stringify({
+                animeId: animeId,
+            })
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data['success']) {
+                    setFavorite(false);
+                }
+            })
+            .catch(err => console.log(err));
+    }
+
 
 
     if (anime.length === 0) {
@@ -56,10 +120,18 @@ const Anime = () => {
                             <div className="badge badge-accent mt-5 lg:m-2">{anime?.type}</div>
                         </div>
                         <div className='py-3 lg:py-0'>
-                            <button className="btn bg-zinc-700 text-gray-200 btn-sm  gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
-                                Add to favorites
-                            </button>
+                            {favorite ?(
+                                <button onClick={removeFromFavorites} style={{color:'yellow'}} className="btn bg-zinc-700 text-gray-200 btn-sm  gap-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill='currentColor' viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+                                    Favorite
+                                </button>
+                            ):(
+                                <button onClick={addToFavorites} className="btn bg-zinc-700 text-gray-200 btn-sm  gap-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill='none' viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+                                    Add to favorites
+                                </button>
+                            )}
+                            
                         </div>
                     </div>
                     <h2 className=' text-gray-400 py-1'>{anime.debut}</h2>
