@@ -30,7 +30,7 @@ export default function SearchItem(props) {
             <Link to={`/anime-info/${props.id_name}`}>
                 <div className="hover:scale-110  relative flex justify-center items-center transition duration-300 hover:text-white">
                     <img
-                        className="mx-auto hover:opacity-90 transition duration-300 opacity-70 border-[3px] shadow rounded-md border-white"
+                        className="mx-auto h-60 w-48 object-cover hover:opacity-90 transition duration-300 opacity-70 border-[3px] shadow rounded-md border-white"
                         src={base64 ? `data:image/png;base64,${base64}` : loading}
                         alt={props.anime.title}
                     />
