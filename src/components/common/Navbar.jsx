@@ -40,6 +40,7 @@ const Navbar = () => {
 
                     </div>
                     <div className="gap-1">
+                        {/* -------------DESKTOP SEARCH-------------- */}
                         <div className="form-control hidden md:block">
                             <div className="input-group">
                                 <input value={search} onChange={(e) => setSearch(e.target.value)} type="text" placeholder="Search…" className="input input-bordered w-full" />
@@ -78,12 +79,21 @@ const Navbar = () => {
                         )}
                     </div>
                 </div>
+                {/* -----------MOBILE SEARCH------------- */}
                 <div className="form-control w-5/6 mx-auto block md:hidden pb-3">
                     <div className="input-group input-group-xs">
-                        <input type="text" placeholder="Search…" className="input  input-bordered w-full" />
-                        <button className="btn btn-square">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-                        </button>
+                        <input value={search} onChange={(e) => setSearch(e.target.value)} type="text" placeholder="Search…" className="input  input-bordered w-full" />
+                        {search ? (
+                            <Link to={`/search-result/${search}`}>
+                                <button className="btn btn-square">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                                </button>
+                            </Link>
+                        ) : (
+                            <button className="btn btn-square">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                            </button>
+                        )}
                     </div>
                 </div>
             </nav>
