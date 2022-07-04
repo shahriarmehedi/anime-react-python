@@ -49,32 +49,53 @@ const Anime = () => {
             <Navbar />
             <div>
                 <img className='w-full h-[320px] lg:h-[250px] object-cover' src={anime && `data:image/png;base64,${anime['banner']}`} alt="" />
-                <div className='w-full mx-auto absolute text-center lg:text-left top-[100px] lg:top-[230px] lg:left-[380px] lg:w-[62%]'>
-                    <div className='flex flex-col lg:flex-row items-center lg:justify-between mt-12 lg:mt-0'>
-                        <div className='flex flex-col lg:flex-row items-center'>
-                            <h1 className='w-5/6 mx-auto lg:w-full text-center text-white text-xl lg:text-2xl font-semibold' >{anime?.title}</h1>
-                            <div className="badge badge-accent mt-5 lg:m-2">{anime?.type}</div>
-                        </div>
-                        <div className='py-3 lg:py-0'>
-                            <button className="btn bg-zinc-700 text-gray-200 btn-sm text-xs gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
-                                Add to favorites
-                            </button>
-                        </div>
-                    </div>
-                    <h2 className=' text-gray-400 py-1'>{anime.debut}</h2>
 
-                </div>
             </div>
             <div className='flex flex-col lg:flex-row w-5/6 mx-auto'>
                 <div className='w-[50%] lg:w-[20%] mx-auto relative bottom-16 lg:bottom-28'>
                     <img className=' transition duration-300 border-[5px] shadow rounded-md border-white' alt="" src={anime && `data:image/png;base64,${anime['poster']}`} />
                 </div>
                 <div className='px-5 lg:px-0 lg:w-[75%] lg:pl-5 lg:h-[190px] lg:overflow-hidden lg:mt-[20px] mx-auto bg-white shadow rounded'>
+
+
+                    {/* ------------FOR DESKTOP-------- */}
+                    <div className='hidden lg:block text-center lg:text-left absolute top-[100px] w-5/6 lg:w-full mx-auto lg:top-[200px]'>
+                        <div className='flex flex-col lg:flex-row items-center lg:justify-between lg:w-5/6 mt-12 lg:mt-0'>
+                            <div className='flex flex-col lg:flex-row items-center'>
+                                <h1 className=' text-white text-xl lg:text-2xl font-semibold max-w-2xl' >{anime?.title}</h1>
+                                <div className="badge badge-accent mt-5 lg:m-2">{anime?.type}</div>
+                            </div>
+
+                        </div>
+                        <div className='py-3 mt-2 lg:py-0'>
+                            <button className="btn bg-zinc-700 text-gray-200 btn-sm text-xs gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+                                Add to favorites
+                            </button>
+                        </div>
+                    </div>
+
+
+                    {/* ------------FOR MOBILE-------- */}
+                    <div className='lg:hidden text-center  absolute top-[100px] left-0 right-0 w-5/6  mx-auto '>
+                        <div className='flex flex-col lg:flex-row items-center lg:justify-between lg:w-5/6 mt-12 lg:mt-0'>
+                            <div className='flex flex-col lg:flex-row items-center'>
+                                <h1 className=' text-white text-xl lg:text-2xl font-semibold max-w-2xl' >{anime?.title}</h1>
+                                <div className="badge badge-accent mt-5 lg:m-2">{anime?.type}</div>
+                            </div>
+
+                        </div>
+                        <div className='py-3 mt-2 lg:py-0'>
+                            <button className="btn bg-zinc-700 text-gray-200 btn-sm text-xs gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+                                Add to favorites
+                            </button>
+                        </div>
+                    </div>
                     <h3 className='py-2 pt-5 text-2xl font-bold text-gray-700'>Synopsis</h3>
                     <div>
-                        {anime && anime.genres.map(genre => {
-                            return <div className="badge hover:bg-sky-500 hover:text-white mr-1 border-none bg-sky-200 text-sky-700 cursor-pointer">{genre}</div>
+                        {anime && anime.genres.map((genre, index) => {
+                            return <div key={index} className="badge hover:bg-sky-500 hover:text-white mr-1 border-none bg-sky-200 text-sky-700 cursor-pointer">{genre}</div>
                         })}
                     </div>
                     <p className='py-2 text-xs overflow-auto pr-5'>{anime && anime.synopsis}</p>
