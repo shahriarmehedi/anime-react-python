@@ -22,7 +22,7 @@ const RandomAnime = ({randomAnimes}) => {
                         <div key={anime.id}>
                             <Link to={`/anime-info/${id_name}`}>
                             <div className="hover:scale-110  relative flex justify-center items-center transition duration-300 hover:text-white">
-                                <img className='mx-auto hover:opacity-90 transition duration-300 opacity-70 border-[3px] shadow rounded-md border-white' src={`https://anime-python-backend.herokuapp.com${anime.image}`} alt={anime.title} />
+                                <img className='mx-auto hover:opacity-90 transition duration-300 opacity-70 border-[3px] shadow rounded-md border-white' src={`${process.env.REACT_APP_BASEURL}${anime.image}`} alt={anime.title} />
                                 <button className="absolute">
                                     <i className="bi bi-play-circle-fill text-4xl shadow-lg opacity-80 text-white"></i>
                                 </button>
