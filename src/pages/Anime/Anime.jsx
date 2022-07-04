@@ -35,15 +35,23 @@ const Anime = () => {
     }, [animeId]);
 
     useEffect(() => {
-        if (localStorage.getItem('token')) {
-            fetch(`${process.env.REACT_APP_BASEURL}/check-favorite/${animeId}`)
+        if (localStorage.getItem('token') !== null) {
+            fetch(`${process.env.REACT_APP_BASEURL}/check-favorite`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Token ${localStorage.getItem('token')}`
+                },
+                body: JSON.stringify({
+                    animeId: animeId
+                })
+            })
                 .then(res => res.json())
                 .then(data => {
                     if (data['favorite']) {
-                        setFavorite(data['favorite']);
+                        setFavorite(true);
                     }
-                })
-                .catch(err => console.log(err));
+                }).catch(err => console.log(err));
         }
     }, [animeId]);
 
@@ -66,6 +74,7 @@ const Anime = () => {
         })
             .then(res => res.json())
             .then(data => {
+                console.log(data);
                 if (data['success']) {
                     setFavorite(true);
                 }
