@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import SearchPage from './pages/SearchPage/SearchPage';
+import MyFavoritesAnimes from './pages/MyFavorites/MyFavoritesAnimes';
 
 
 function App() {
@@ -59,6 +60,7 @@ function App() {
           <Route path="/terms-conditions" element={<TermsAndConditions />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/my-favorites" element={<MyFavoritesAnimes />} />
           <Route path="/search-result/:searchQuery" element={<SearchPage latestAnimes={latestAnimes} />} />
         </Routes>
         <Footer />
