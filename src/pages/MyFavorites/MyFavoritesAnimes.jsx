@@ -3,7 +3,7 @@ import Navbar from '../../components/common/Navbar';
 
 const MyFavoritesAnimes = () => {
     return (
-        <div>
+        <div className='bg-zinc-800'>
             <Navbar />
 
             <div className='w-5/6 mx-auto'>

@@ -76,7 +76,16 @@ const Navbar = () => {
                                         <img className='' src={animeuser} alt="" />
                                     </div>
                                 </label>
-                                <ul tabIndex="0" className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
+                                <ul tabIndex="0" className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-zinc-700 rounded-box w-52">
+
+                                    <Link to='/my-favorites'>
+                                        <li>
+                                            <a>
+                                                My favorites
+                                            </a>
+                                        </li>
+                                    </Link>
+
 
                                     <li><a onClick={handleLogout} >Logout</a></li>
                                 </ul>
