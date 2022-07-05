@@ -29,6 +29,7 @@ const Anime = () => {
             .then(data => {
                 if (data['info']) {
                     setAnime(data['info']);
+                    console.log(data['info']);
                 }
             })
             .catch(err => console.log(err));
@@ -70,6 +71,7 @@ const Anime = () => {
             },
             body: JSON.stringify({
                 animeId: animeId,
+                posterUrl: anime.poster_url,
             })
         })
             .then(res => res.json())
