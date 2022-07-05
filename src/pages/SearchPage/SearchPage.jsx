@@ -10,6 +10,9 @@ const SearchPage = () => {
 
     const [animes, setAnimes] = useState([]);
     const [noResults, setNoResults] = useState(false);
+    const [loadMore, setLoadMore] = useState(false);
+    const [page, setPage] = useState(2);
+    const [loadingMore, setLoadingMore] = useState(false);
 
     useEffect(() => {
         setAnimes([])
@@ -25,11 +28,44 @@ const SearchPage = () => {
                 if (data['results'].length) {
                     setAnimes(data['results'])
                     setNoResults(false)
+                    data['more']? setLoadMore(true) : setLoadMore(false)
                 }
             }
             )
             .catch(err => console.log(err));
     }, [searchQuery]);
+
+
+    const loadMoreAnimes = () => {
+        setPage(page + 1)
+        setLoadingMore(true)
+        setLoadMore(false)
+        fetch(`${process.env.REACT_APP_BASEURL}/search-more-results`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Token ${localStorage.getItem("token")}`
+            },
+            body: JSON.stringify({
+                searchQuery,
+                page
+            })
+        })
+            .then(res => res.json())
+            .then(data => {
+                setLoadingMore(false)
+                if (data['results'].length) {
+                    setAnimes([...animes, ...data['results']])
+                    data['more']? setLoadMore(true) : setLoadMore(false)
+                } else {
+                    setLoadMore(false)
+                }
+            }
+            )
+            .catch(err => console.log(err));
+    }
+
+
 
     if (!animes.length) {
         return (
@@ -60,6 +96,9 @@ const SearchPage = () => {
                         return <SearchItem id_name={id_name} anime={anime} />
                     })}
                 </div>
+                <br/><br/>
+                {loadingMore ? <button className="btn loading normal-case">Loading more results ...</button> : (null)}
+                {loadMore && <button onClick={loadMoreAnimes} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ">Show more</button>}
             </div>
 
         </div>
