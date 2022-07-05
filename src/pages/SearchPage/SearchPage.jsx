@@ -24,6 +24,7 @@ const SearchPage = () => {
             .then(data => {
                 if (data['results'].length) {
                     setAnimes(data['results'])
+                    setNoResults(false)
                 }
             }
             )
